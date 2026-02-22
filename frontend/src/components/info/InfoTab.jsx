@@ -122,13 +122,22 @@ function InfoTab() {
               <span className="clink-val">jcua.dev@gmail.com ↗</span>
             </a>
             <a
-              href="https://github.com/justinecua"
+              href="https://www.facebook.com/justine.cua.2024/"
               target="_blank"
               rel="noreferrer"
               className="clink"
             >
-              <span className="clink-label">GitHub</span>
-              <span className="clink-val">github.com/justinecua ↗</span>
+              <span className="clink-label">Facebook</span>
+              <span className="clink-val">facebook.com/justine.cua.2024 ↗</span>
+            </a>
+            <a
+              href="https://www.instagram.com/jaazzztin/"
+              target="_blank"
+              rel="noreferrer"
+              className="clink"
+            >
+              <span className="clink-label">Instagram</span>
+              <span className="clink-val">instagram.com/jaazzztin ↗</span>
             </a>
             <a
               href="https://www.linkedin.com/in/justine-cua-886701303/"
