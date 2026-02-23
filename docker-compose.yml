@@ -25,5 +25,3 @@ services:
       "
     ports:
       - "8007:8007"
-    volumes:
-      - ./backend:/api
