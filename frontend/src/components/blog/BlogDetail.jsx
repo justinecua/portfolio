@@ -47,7 +47,7 @@ function BlogDetail() {
           <p className="post-excerpt">{post.excerpt}</p>
 
           <div className="post-byline">
-            <span className="post-author">Justine A. Cua</span>
+            <span className="post-author">Justine Cua</span>
             <span className="post-sep">·</span>
             <span className="post-date">{post.date}</span>
           </div>
