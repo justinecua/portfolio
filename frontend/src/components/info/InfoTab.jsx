@@ -6,13 +6,10 @@ function InfoTab() {
       <div className="info-tab">
         {/* ─── ABOUT ─── */}
         <section>
-          <p className="info-eyebrow">About</p>
+          <p className="info-eyebrow">Hi I`m</p>
           <h2 className="info-name">Justine Cua</h2>
           <p className="info-role">Web Developer / Mobile Developer</p>
-          <p className="info-bio">
-            Wassup! My portfolio's pretty basic. I know you can build it
-            yourself. : )
-          </p>
+          <p className="info-bio">I like it simple: )</p>
           {/* <div className="info-divider" /> */}
 
           {/* ─── TECH STACK ─── */}

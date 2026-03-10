@@ -7,6 +7,7 @@ import WorkTab from "./components/work/WorkTab";
 import BlogList from "./components/blog/BlogList";
 import BlogDetail from "./components/blog/BlogDetail";
 import InfoTab from "./components/info/InfoTab";
+import Instructions from "./components/exam/database/instructions";
 
 function App() {
   const [minHeader, setMinHeader] = useState(false);
@@ -18,11 +19,11 @@ function App() {
     const handleScroll = () => {
       setMinHeader(panel.scrollTop > 20);
     };
-
     panel.addEventListener("scroll", handleScroll);
 
     return () => panel.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <BrowserRouter>
       <div className="shell">
@@ -36,6 +37,7 @@ function App() {
             <Route path="/projects" element={<WorkTab />} />
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/exam/database/" element={<Instructions />} />
 
             {/* fallback */}
             <Route path="*" element={<Navigate to="/" />} />
