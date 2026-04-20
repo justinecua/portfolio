@@ -1,11 +1,20 @@
+#---------------- Development ----------------------
+# FROM node:22.16.0-slim
+# WORKDIR /app
 
-FROM node:22.16.0-slim
-WORKDIR /app
+# COPY package.json package-lock.json ./
+# RUN npm install
 
-COPY package.json package-lock.json ./
+# COPY . .
+# EXPOSE 5175
+# CMD ["npm", "run", "dev"]
+
+# ------------- Production ------------------------
+FROM node:22.16.0
+WORKDIR /usr/src/app
+COPY package*.json /usr/src/app
 RUN npm install
-
-COPY . .
+COPY . /usr/src/app
+RUN npm run build
 EXPOSE 5175
-CMD ["npm", "run", "dev"]
-
+CMD ["npm", "run", "preview"]
