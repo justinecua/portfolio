@@ -6,7 +6,7 @@ services:
       context: ./frontend
     container_name: portfolio-frontend
     ports:
-      - "5175:5173"
+      - "5175:5175"
     depends_on:
       - portfolio-api
 
