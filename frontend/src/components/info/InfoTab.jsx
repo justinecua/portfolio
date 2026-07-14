@@ -1,16 +1,101 @@
+import { useState, useEffect } from "react";
 import { skills } from "../../data/data";
 import GithubActivity from "../work/Githubactivity";
+import worklog from "../../assets/worklog.png";
+import playstore from "../../assets/playstore3.png";
+import ios from "../../assets/ios_coming.png";
+import Confetti from "../Confetti";
+import { GridBackground } from "../GridBackground";
+
 function InfoTab() {
+  const [showConfetti, setShowConfetti] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowConfetti(false), 3200);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="tab-content">
+    <div className="tab-content" style={{ position: "relative" }}>
+      <GridBackground variant="grid" mask="fade-edges" fill="var(--border)" />
+      {showConfetti && <Confetti />}
       <div className="info-tab">
         {/* ─── ABOUT ─── */}
         <section>
-          <p className="info-eyebrow">Hi I`m</p>
+          <div className="featured-card-fav">
+            <div className="worklog-cards">
+              <div
+                data-text="OJT Hours Tracked"
+                style={{ "--r": -15 }}
+                className="worklog-card"
+              >
+                <div className="card-stat">
+                  <h1>10k+</h1>
+                  <p>Hours</p>
+                </div>
+              </div>
+
+              <div
+                data-text="Worklog – OJT Progress Tracker"
+                style={{ "--r": 5 }}
+                className="worklog-card featured-card"
+              >
+                <img
+                  src={worklog}
+                  alt="Worklog OJT Progress Tracker logo"
+                  className="worklog-logo"
+                />
+              </div>
+
+              <div
+                data-text="App Installs"
+                style={{ "--r": 25 }}
+                className="worklog-card"
+              >
+                <div className="card-stat">
+                  <h1>1k+</h1>
+                  <p>Installs</p>
+                </div>
+              </div>
+            </div>
+            {/* ─── APP PROMO ─── */}
+            <div className="app-promo-container">
+              <div className="app-promo">
+                <img
+                  src={worklog}
+                  alt="Worklog app icon"
+                  className="app-promo-icon"
+                />
+                <div className="app-promo-info">
+                  <h3 className="app-promo-name">
+                    Worklog – OJT Progress Tracker
+                  </h3>
+                  <p className="app-promo-desc">
+                    Track your OJT hours, log daily tasks, and monitor your
+                    internship progress in one simple app — built for students
+                    who want a clear, no-hassle way to stay on top of their
+                    required hours.
+                  </p>
+                </div>
+              </div>
+              <div className="app-promo-footer">
+                <a href="https://play.google.com/store/apps/details?id=com.justinecua.worklog">
+                  <div className="playstore-container">
+                    <img src={playstore} />
+                  </div>
+                </a>
+                <a href="">
+                  <div className="playstore-container">
+                    <img src={ios} />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p className="info-eyebrow">Hi I'm</p>
           <h2 className="info-name">Justine Cua</h2>
           <p className="info-role">Web Developer / Mobile Developer</p>
-          <p className="info-bio">I like it simple: )</p>
-          {/* <div className="info-divider" /> */}
 
           {/* ─── TECH STACK ─── */}
           <section className="info-stack">
@@ -118,24 +203,7 @@ function InfoTab() {
               <span className="clink-label">Email</span>
               <span className="clink-val">jcua.dev@gmail.com ↗</span>
             </a>
-            <a
-              href="https://www.facebook.com/justine.cua.2024/"
-              target="_blank"
-              rel="noreferrer"
-              className="clink"
-            >
-              <span className="clink-label">Facebook</span>
-              <span className="clink-val">facebook.com/justine.cua.2024 ↗</span>
-            </a>
-            <a
-              href="https://www.instagram.com/jaazzztin/"
-              target="_blank"
-              rel="noreferrer"
-              className="clink"
-            >
-              <span className="clink-label">Instagram</span>
-              <span className="clink-val">instagram.com/jaazzztin ↗</span>
-            </a>
+
             <a
               href="https://www.linkedin.com/in/justine-cua-886701303/"
               target="_blank"
@@ -157,7 +225,7 @@ function InfoTab() {
           </div>
           <p className="contact-note">
             <span className="avail-dot" />
-            Available now — responds within 24h
+            By Justine Cua
           </p>
         </section>
       </div>

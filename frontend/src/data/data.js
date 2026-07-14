@@ -1,4 +1,4 @@
-export const TABS = ["About", "Blog", "Projects"];
+export const TABS = ["About", "Blog", "Projects", "Certificates"];
 
 export const projects = [
   {
@@ -315,9 +315,11 @@ const frag = \`
 export const skills = [
   "Javascript",
   "Python",
+  "MySQL",
   "PostgreSQL",
   "Docker",
   "Php",
+  "Laravel",
   "React Native",
   "Django",
   "Flutter",

@@ -56,14 +56,34 @@ function BlogList() {
   return (
     <div className="tab-content">
       <div className="section-wrap">
-        <div className="blog-list">
-          {posts.map((post) => (
-            <Link key={post.id} to={`/blog/${post.id}`} className="blog-row">
-              <span className="blog-date">{post.date}</span>
-              <span className="blog-title">{post.title}</span>
-              <span className="blog-tag">{post.tag}</span>
-              <span className="blog-min">{post.min}</span>
-              <span className="blog-arrow">↗</span>
+        <div className="blog-grid">
+          {posts.map((post, i) => (
+            <Link key={post.id} to={`/blog/${post.id}`} className="blog-card">
+              <span className="blog-card-index">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              <div className="blog-card-body">
+                <div className="blog-card-top">
+                  {post.tag && (
+                    <span className="blog-card-tag">{post.tag}</span>
+                  )}
+                  <span className="blog-card-date">{post.date}</span>
+                </div>
+
+                <h3 className="blog-card-title">{post.title}</h3>
+
+                {post.excerpt && (
+                  <p className="blog-card-excerpt">{post.excerpt}</p>
+                )}
+
+                <div className="blog-card-footer">
+                  <span className="blog-card-min">{post.min} min read</span>
+                  <span className="blog-card-cta">
+                    Read post <span className="blog-card-arrow">↗</span>
+                  </span>
+                </div>
+              </div>
             </Link>
           ))}
         </div>

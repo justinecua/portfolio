@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300;10..48,400;10..48,600;10..48,700&family=Fira+Code:wght@300;400;500&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root,
+html.dark {
+  --bg: #030303;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #cdd9e5;
+  --text-dim: rgba(255, 255, 255, 0.536);
+  --accent: #d1d1d1;
+  --accent-dim: #232323;
+  --header-bg: #030303;
+  --modal-bg: #161b22;
+  --card-bg: #141414;
+  --chip-bg: rgba(255, 255, 255, 0.04);
+  --sans: "Bricolage Grotesque", system-ui, sans-serif;
+  --mono: "Fira Code", monospace;
+}
+
+html.light {
+  --bg: #ffffff;
+  --surface: rgba(0, 0, 0, 0.04);
+  --surface-hover: rgba(0, 0, 0, 0.07);
+  --border: rgba(0, 0, 0, 0.09);
+  --text: #1c2128;
+  --text-dim: rgba(28, 33, 40, 0.782);
+  --accent: #030303;
+  --accent-dim: #efefef;
+  --header-bg: #f9f9f9;
+  --modal-bg: #ffffff;
+  --card-bg: #ffffff;
+  --chip-bg: rgba(0, 0, 0, 0.04);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: color 0.2s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
