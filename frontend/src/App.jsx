@@ -8,6 +8,7 @@ import BlogList from "./components/blog/BlogList";
 import BlogDetail from "./components/blog/BlogDetail";
 import InfoTab from "./components/info/InfoTab";
 import Instructions from "./components/exam/database/instructions";
+import Certificates from "./components/certificates/certificates";
 
 function App() {
   const [minHeader, setMinHeader] = useState(false);
@@ -38,6 +39,7 @@ function App() {
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="/exam/database/" element={<Instructions />} />
+            <Route path="/certificates/" element={<Certificates />} />
 
             {/* fallback */}
             <Route path="*" element={<Navigate to="/" />} />
