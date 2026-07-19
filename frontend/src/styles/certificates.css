@@ -1,0 +1,135 @@
+.certificates {
+  background: #fafafa;
+}
+
+.certificates h2 {
+  color: #111827;
+  font-size: 2rem;
+  margin-bottom: 32px;
+}
+
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 1000px) {
+  .certificate-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .certificate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificates h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+}
+
+.certificate-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px -12px rgba(15, 23, 42, 0.12);
+  border-color: #d1d5db;
+}
+
+.pdf-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.pdf-preview iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+  pointer-events: none;
+  transform: translateY(-15px);
+}
+
+@media (max-width: 640px) {
+  .pdf-preview {
+    aspect-ratio: 16 / 9;
+  }
+
+  .pdf-preview iframe {
+    height: 420px;
+  }
+}
+
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 70%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+}
+
+.pdf-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  background: #ffffff;
+  color: #374151;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+.certificate-info {
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.certificate-info h3 {
+  color: #111827;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin: 0 0 14px;
+}
+
+@media (max-width: 640px) {
+  .certificate-info h3 {
+    font-size: 1rem;
+  }
+}
+
+.certificate-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.certificate-link-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}

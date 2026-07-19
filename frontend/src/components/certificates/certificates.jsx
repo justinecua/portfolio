@@ -5,7 +5,21 @@ import CertificateCard from "./CertificateCard";
 const Certificates = () => {
   const certificates = [
     {
-      title: "3 day Laravel Framework Training",
+      title: "Linux TestDome Certificate",
+      issuer: "TestDome",
+      category: "TestDome",
+      file: "https://www.testdome.com/certificates/0b3f53d3e6ed45c7a8c30230f3d9de0a",
+      date: "July 18, 2026",
+    },
+    {
+      title: "SQL TestDome Certificate",
+      issuer: "TestDome",
+      category: "TestDome",
+      file: "https://www.testdome.com/certificates/18144616f8274aa0b7b4ddbe4f225d31",
+      date: "July 18, 2026",
+    },
+    {
+      title: "3 Day Laravel Framework Training",
       issuer: "Philippine Society of Information Technology Educators",
       category: "Backend Development",
       file: ReactCertificate,
