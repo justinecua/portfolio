@@ -6,6 +6,8 @@ import playstore from "../../assets/playstore3.png";
 import ios from "../../assets/ios_coming.png";
 import Confetti from "../Confetti";
 import { GridBackground } from "../GridBackground";
+import { FiMail, FiLinkedin } from "react-icons/fi";
+import { FaXTwitter } from "react-icons/fa6";
 
 function InfoTab() {
   const [showConfetti, setShowConfetti] = useState(true);
@@ -200,26 +202,35 @@ function InfoTab() {
           <p className="info-eyebrow">Contact</p>
           <div className="contact-links">
             <a href="mailto:jcua.dev@gmail.com" className="clink">
-              <span className="clink-label">Email</span>
+              <span className="clink-label">
+                <FiMail className="clink-icon" size={14} />
+                <span className="clink-text">Email</span>
+              </span>
               <span className="clink-val">jcua.dev@gmail.com ↗</span>
             </a>
-
             <a
               href="https://www.linkedin.com/in/justine-cua-886701303/"
               target="_blank"
               rel="noreferrer"
               className="clink"
             >
-              <span className="clink-label">LinkedIn</span>
+              <span className="clink-label">
+                <FiLinkedin className="clink-icon" size={14} />
+                <span className="clink-text">LinkedIn</span>
+              </span>
               <span className="clink-val">linkedin.com/in/justine-cua ↗</span>
             </a>
+
             <a
               href="https://x.com/jazzzztin"
               target="_blank"
               rel="noreferrer"
               className="clink"
             >
-              <span className="clink-label">Twitter / X</span>
+              <span className="clink-label">
+                <FaXTwitter className="clink-icon" size={14} />
+                <span className="clink-text">Twitter / X</span>
+              </span>
               <span className="clink-val">@jazzzztin ↗</span>
             </a>
           </div>

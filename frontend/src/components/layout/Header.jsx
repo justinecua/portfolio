@@ -8,7 +8,7 @@ function Header({ tabs, minimized }) {
     <header className={`header ${minimized ? "header-min" : ""}`}>
       <Link to="/" className="header-left" aria-label="Go to About">
         <img src={logo} alt="Justine Cua Logo" className="logo-img" />
-        <span className="tagline">Justine Cua</span>
+        {/* <span className="tagline">Justine Cua</span> */}
       </Link>
 
       <div className="header-center">
