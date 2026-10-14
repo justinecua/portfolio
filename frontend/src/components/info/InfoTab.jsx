@@ -9,6 +9,7 @@ import {
   FiGithub,
   FiMail,
   FiMonitor,
+  FiPlay,
   FiServer,
   FiSmartphone,
 } from "react-icons/fi";
@@ -28,6 +29,9 @@ import {
 } from "react-icons/si";
 import { skills } from "../../data/data";
 import PhotoLightbox from "./PhotoLightbox";
+import useProjects from "../../hooks/useProjects";
+import Modal from "../work/Modal";
+import ProjectThumb from "../work/ProjectThumb";
 import Clock from "../layout/Clock";
 import profileCutout from "../../assets/profile-cutout.png";
 import profilePhoto from "../../assets/profile.jpeg";
@@ -92,6 +96,9 @@ const WORK = [
     ],
     stack: "React Native · JavaScript · Android",
     media: "worklog",
+    // matched (case-insensitive) against project titles from the API; the
+    // matching project's thumbnail is shown on the card
+    project: "worklog",
     href: "https://play.google.com/store/apps/details?id=com.justinecua.worklog",
     link: "https://play.google.com/store/apps/details?id=com.justinecua.worklog",
     linkLabel: "Get it on Google Play",
@@ -106,6 +113,7 @@ const WORK = [
     ],
     stack: "Django · PostgreSQL · Docker · Linux",
     icons: [SiDjango, SiPostgresql, SiDocker, SiLinux],
+    project: "research management",
     link: "", // add the project URL here
     linkLabel: "View project",
   },
@@ -119,6 +127,7 @@ const WORK = [
     ],
     stack: "React Native · Offline-first · Hotspot networking",
     icons: [SiReact, SiJavascript],
+    project: "simcrit",
     link: "", // add the project URL here
     linkLabel: "View project",
   },
@@ -206,7 +215,50 @@ function Section({ className = "", children, ...props }) {
   );
 }
 
-function WorkMedia({ item }) {
+function WorkMedia({ item, project, onPlay }) {
+  // a thumbnail from the matching project in the Projects section
+  if (project?.thumbs.length) {
+    const hasDemo = Boolean(project.youtubeId);
+    const inner = (
+      <>
+        <ProjectThumb
+          sources={project.thumbs}
+          alt={project.title}
+          loading="lazy"
+        />
+        {hasDemo && (
+          <span className="pcard-play" aria-hidden="true">
+            <FiPlay size={18} />
+          </span>
+        )}
+      </>
+    );
+    if (hasDemo) {
+      return (
+        <button
+          type="button"
+          className="pcard-media pcard-media-thumb"
+          onClick={() => onPlay(project)}
+          aria-label={`Watch ${project.title} demo`}
+        >
+          {inner}
+        </button>
+      );
+    }
+    return project.site ? (
+      <a
+        className="pcard-media pcard-media-thumb"
+        href={project.site}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {inner}
+      </a>
+    ) : (
+      <div className="pcard-media pcard-media-thumb">{inner}</div>
+    );
+  }
+
   if (item.media === "worklog") {
     return (
       <a
@@ -241,6 +293,12 @@ const EMAIL = "jcua.dev@gmail.com";
 function InfoTab() {
   const [copied, setCopied] = useState(false);
   const [viewing, setViewing] = useState(null); // index of the open photo
+  const [demo, setDemo] = useState(null); // project whose video is open
+  const { projects } = useProjects();
+  const findProject = (keyword) =>
+    keyword
+      ? projects.find((p) => p.title.toLowerCase().includes(keyword))
+      : undefined;
 
   const copyEmail = async () => {
     try {
@@ -261,9 +319,7 @@ function InfoTab() {
           </h1>
 
           <p className="hero-text">
-            Hi I’m Justine, a developer from Iligan City, Philippines. I build
-            web systems for schools and offices, and mobile apps for students
-            and medics.
+            I am a developer from Iligan City, Philippines. I build web systems and mobile apps, then teach my students how to build their own.
           </p>
         </div>
 
@@ -323,7 +379,11 @@ function InfoTab() {
                 <span>Stack —</span> {w.stack}
               </p>
 
-              <WorkMedia item={w} />
+              <WorkMedia
+                item={w}
+                project={findProject(w.project)}
+                onPlay={setDemo}
+              />
 
               {w.link && (
                 <a
@@ -354,7 +414,8 @@ function InfoTab() {
           <p>
             I’m one of the staff of the{" "}
             <strong>ICTC Department at St. Michael’s College of Iligan</strong>,
-            where I also teach <strong>OOP and Databases</strong> to 2nd and 3rd
+            where I also teach <strong>Programming subjects like Object Oriented Programming and 
+            Fundamentals of Databases</strong> to 2nd and 3rd
             year students.
           </p>
         </div>
@@ -491,6 +552,7 @@ function InfoTab() {
           </div>
         </div>
       </Section>
+      <Modal project={demo} onClose={() => setDemo(null)} />
     </div>
   );
 }

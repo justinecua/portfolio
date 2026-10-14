@@ -24,12 +24,18 @@ function useProjects() {
             tag: p.tag,
             desc: p.description,
             youtubeId,
-            // a custom thumbnail set in the admin wins over YouTube's
-            thumb:
-              p.thumbnail ||
-              (youtubeId
-                ? `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`
-                : null),
+            // thumbnails to try in order: an uploaded photo, a thumbnail URL,
+            // then YouTube's sizes from sharpest down (maxres is 1280x720
+            // but doesn't exist for every video)
+            thumbs: [
+              p.thumbnail_file,
+              p.thumbnail,
+              ...(youtubeId
+                ? ["maxresdefault", "sddefault", "hqdefault"].map(
+                    (q) => `https://img.youtube.com/vi/${youtubeId}/${q}.jpg`,
+                  )
+                : []),
+            ].filter(Boolean),
             site: p.site,
             stack: p.stack?.map((s) => s.name) || [],
           };

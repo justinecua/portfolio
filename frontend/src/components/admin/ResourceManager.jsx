@@ -1,7 +1,30 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { FiPlus, FiEdit2, FiTrash2, FiX } from "react-icons/fi";
 import { request } from "../../api/admin";
 import BlockEditor from "./BlockEditor";
+
+// Thumbnail of a newly picked image file, or of the current one.
+function FilePreview({ file, url }) {
+  const objectUrl = useMemo(
+    () => (file ? URL.createObjectURL(file) : null),
+    [file],
+  );
+  // free the temporary URL when the file changes or the form closes
+  useEffect(() => {
+    return () => {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, [objectUrl]);
+
+  const src = file ? objectUrl : url;
+  if (!src) return null;
+  return (
+    <div className="adm-preview">
+      <img src={src} alt="" />
+      <span>{file ? "New photo" : "Current photo"}</span>
+    </div>
+  );
+}
 
 function Field({ field, value, onChange, form }) {
   const id = `f-${field.name}`;
@@ -24,12 +47,28 @@ function Field({ field, value, onChange, form }) {
     );
   } else if (field.type === "blocks") {
     input = <BlockEditor blocks={value} onChange={onChange} />;
+  } else if (field.type === "checkbox") {
+    input = (
+      <label className="adm-check">
+        <input
+          id={id}
+          type="checkbox"
+          checked={Boolean(value)}
+          onChange={(e) => onChange(e.target.checked)}
+        />
+        <span>{field.label}</span>
+      </label>
+    );
   } else if (field.type === "file") {
+    const current = field.current?.(form);
     input = (
       <>
-        {form.currentFile && !value && (
+        {field.preview && (value || current) && (
+          <FilePreview file={value} url={current} />
+        )}
+        {current && !value && !field.preview && (
           <a
-            href={form.currentFile}
+            href={current}
             target="_blank"
             rel="noreferrer"
             className="adm-current"
@@ -58,10 +97,12 @@ function Field({ field, value, onChange, form }) {
 
   return (
     <div className="adm-field">
-      <label htmlFor={id}>
-        {field.label}
-        {field.required && <span className="adm-req"> *</span>}
-      </label>
+      {field.type !== "checkbox" && (
+        <label htmlFor={id}>
+          {field.label}
+          {field.required && <span className="adm-req"> *</span>}
+        </label>
+      )}
       {input}
       {field.hint && <p className="adm-hint">{field.hint}</p>}
     </div>
@@ -109,7 +150,9 @@ function ResourceManager({ resource }) {
         await request(resource.path, { method: "POST", body });
       } else {
         await request(`${resource.path}${editing.id}/`, {
-          method: resource.multipart ? "PATCH" : "PUT",
+          // file uploads go as a partial update; plain JSON as a full one
+          method:
+            resource.multipart || body instanceof FormData ? "PATCH" : "PUT",
           body,
         });
       }
@@ -207,15 +250,19 @@ function ResourceManager({ resource }) {
             </div>
 
             <div className="adm-modal-body">
-              {resource.fields.map((field) => (
-                <Field
-                  key={field.name}
-                  field={field}
-                  form={form}
-                  value={form[field.name] ?? ""}
-                  onChange={(v) => setForm((f) => ({ ...f, [field.name]: v }))}
-                />
-              ))}
+              {resource.fields
+                .filter((field) => !field.showIf || field.showIf(form))
+                .map((field) => (
+                  <Field
+                    key={field.name}
+                    field={field}
+                    form={form}
+                    value={form[field.name] ?? ""}
+                    onChange={(v) =>
+                      setForm((f) => ({ ...f, [field.name]: v }))
+                    }
+                  />
+                ))}
             </div>
 
             <div className="adm-modal-foot">

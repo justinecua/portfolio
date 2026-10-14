@@ -14,6 +14,8 @@ class Project(models.Model):
     site = models.URLField(blank=True)
     youtube = models.CharField(max_length=100, blank=True)
     thumbnail = models.URLField(blank=True)
+    # an uploaded thumbnail wins over the URL and the YouTube thumbnail
+    thumbnail_file = models.FileField(upload_to="projects/", blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
