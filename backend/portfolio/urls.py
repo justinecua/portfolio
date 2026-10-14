@@ -14,10 +14,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('core.urls')),  
+    path('api/', include('core.urls')),
+    # uploaded certificate files; the site runs on runserver, so Django
+    # serves them itself even when DEBUG is off. Frame-exempt so the
+    # certificates page can preview PDFs inline.
+    re_path(
+        r'^media/(?P<path>.*)$',
+        xframe_options_exempt(serve),
+        {'document_root': settings.MEDIA_ROOT},
+    ),
 ]
