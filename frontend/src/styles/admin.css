@@ -564,3 +564,39 @@ html.dark .chat-error {
   background: var(--live);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--live) 22%, transparent);
 }
+
+/* image preview + checkbox in the edit modal */
+.adm-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.adm-preview img {
+  width: 160px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.adm-preview span {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.adm-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.adm-check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}

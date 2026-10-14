@@ -21,13 +21,31 @@
   -webkit-backdrop-filter: blur(14px);
 }
 
-.nav-logo img {
+/* profile photo, zoomed onto the face (same crop as the chat avatar) */
+.nav-logo {
+  position: relative;
   display: block;
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  object-fit: cover;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.nav-logo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 115%;
+  height: auto;
+  max-width: none;
+  transform: translate(-44.6%, -48%);
   filter: grayscale(1);
+  transition: filter 0.2s ease;
+}
+
+.nav-logo:hover img {
+  filter: none;
 }
 
 .nav-group {

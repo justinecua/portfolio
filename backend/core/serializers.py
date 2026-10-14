@@ -8,8 +8,16 @@ class SkillSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+IMAGE_EXTENSIONS = (".png", ".jpg", ".jpeg", ".webp", ".gif")
+MAX_THUMBNAIL_BYTES = 5 * 1024 * 1024
+
+
 class ProjectSerializer(serializers.ModelSerializer):
     stack = SkillSerializer(many=True, read_only=True)
+    # set true to remove an uploaded thumbnail
+    clear_thumbnail_file = serializers.BooleanField(
+        write_only=True, required=False, default=False
+    )
     # admin writes the stack as a plain list of names
     stack_names = serializers.ListField(
         child=serializers.CharField(max_length=100),
@@ -21,6 +29,16 @@ class ProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = "__all__"
 
+    def validate_thumbnail_file(self, file):
+        if file:
+            if not file.name.lower().endswith(IMAGE_EXTENSIONS):
+                raise serializers.ValidationError(
+                    "Upload a PNG, JPG, WEBP or GIF image."
+                )
+            if file.size > MAX_THUMBNAIL_BYTES:
+                raise serializers.ValidationError("Image must be 5 MB or smaller.")
+        return file
+
     def _set_stack(self, project, names):
         skills = [
             Skill.objects.get_or_create(name=name.strip())[0]
@@ -31,12 +49,17 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         names = validated_data.pop("stack_names", [])
+        validated_data.pop("clear_thumbnail_file", None)
         project = super().create(validated_data)
         self._set_stack(project, names)
         return project
 
     def update(self, instance, validated_data):
         names = validated_data.pop("stack_names", None)
+        clear = validated_data.pop("clear_thumbnail_file", False)
+        new_file = validated_data.get("thumbnail_file")
+        if (clear or new_file) and instance.thumbnail_file:
+            instance.thumbnail_file.delete(save=False)
         project = super().update(instance, validated_data)
         if names is not None:
             self._set_stack(project, names)

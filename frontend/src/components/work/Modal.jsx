@@ -1,7 +1,11 @@
+import { createPortal } from "react-dom";
+
 function Modal({ project, onClose }) {
   if (!project) return null;
 
-  return (
+  // rendered into <body> so animated (transformed) page sections can't
+  // trap this fixed overlay
+  return createPortal(
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>
@@ -24,14 +28,16 @@ function Modal({ project, onClose }) {
               <h2 className="modal-title">{project.title}</h2>
             </div>
 
-            <a
-              href={project.site}
-              target="_blank"
-              rel="noreferrer"
-              className="modal-site-btn"
-            >
-              Visit Site ↗
-            </a>
+            {project.site && (
+              <a
+                href={project.site}
+                target="_blank"
+                rel="noreferrer"
+                className="modal-site-btn"
+              >
+                Visit Site ↗
+              </a>
+            )}
           </div>
 
           <p className="modal-desc">{project.desc}</p>
@@ -45,7 +51,8 @@ function Modal({ project, onClose }) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

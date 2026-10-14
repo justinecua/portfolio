@@ -38,10 +38,26 @@ export const RESOURCES = {
         placeholder: "Video URL or ID",
       },
       {
+        name: "thumbnail_file",
+        label: "Thumbnail photo",
+        type: "file",
+        accept: "image/png,image/jpeg,image/webp,image/gif",
+        current: (f) => f.currentThumbnail,
+        preview: true,
+        hint: "Upload an image (max 5 MB). Used before the URL and YouTube thumbnail.",
+      },
+      {
+        name: "clear_thumbnail_file",
+        label: "Remove uploaded photo",
+        type: "checkbox",
+        showIf: (f) => Boolean(f.currentThumbnail) && !f.thumbnail_file,
+      },
+      {
         name: "thumbnail",
         label: "Thumbnail URL",
         type: "url",
-        placeholder: "Optional — defaults to the YouTube thumbnail",
+        placeholder: "https://… (optional)",
+        hint: "Or link an image. Without either, the YouTube thumbnail is used.",
       },
     ],
     row: (p) => ({
@@ -58,19 +74,35 @@ export const RESOURCES = {
       site: p.site || "",
       youtube: p.youtube || "",
       thumbnail: p.thumbnail || "",
+      thumbnail_file: null,
+      currentThumbnail: p.thumbnail_file || "",
+      clear_thumbnail_file: false,
     }),
-    toPayload: (f) => ({
-      title: f.title,
-      tag: f.tag,
-      description: f.description,
-      stack_names: f.stack
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean),
-      site: f.site,
-      youtube: f.youtube,
-      thumbnail: f.thumbnail,
-    }),
+    toPayload: (f) => {
+      const data = {
+        title: f.title,
+        tag: f.tag,
+        description: f.description,
+        stack_names: f.stack
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean),
+        site: f.site,
+        youtube: f.youtube,
+        thumbnail: f.thumbnail,
+        clear_thumbnail_file: f.clear_thumbnail_file,
+      };
+      if (!f.thumbnail_file) return data;
+
+      // a new photo has to go up as multipart form data
+      const form = new FormData();
+      Object.entries(data).forEach(([k, v]) => {
+        if (Array.isArray(v)) v.forEach((item) => form.append(k, item));
+        else form.append(k, v);
+      });
+      form.append("thumbnail_file", f.thumbnail_file);
+      return form;
+    },
   },
 
   posts: {
@@ -128,6 +160,7 @@ export const RESOURCES = {
         label: "PDF file",
         type: "file",
         accept: "application/pdf,image/*",
+        current: (f) => f.currentFile,
         hint: "A link or a file is required",
       },
       {
