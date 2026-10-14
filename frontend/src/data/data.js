@@ -313,14 +313,23 @@ const frag = \`
 ];
 
 export const skills = [
-  "Javascript",
+  "Django",
   "Python",
-  "MySQL",
+  "React Native",
   "PostgreSQL",
   "Docker",
   "Php",
   "Laravel",
-  "React Native",
-  "Django",
+  "MySQL",
+  "Javascript",
   "Flutter",
+];
+
+export const SOCIALS = [
+  { label: "GitHub", href: "https://github.com/justinecua" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/justine-cua-886701303/",
+  },
+  { label: "X", href: "https://x.com/jazzzztin" },
 ];

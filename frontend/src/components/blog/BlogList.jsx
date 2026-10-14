@@ -1,6 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FiArrowUpRight } from "react-icons/fi";
 import Spinner from "../Spinner";
+import PageTitle from "../layout/PageTitle";
+
+const formatDate = (iso) => {
+  const d = new Date(`${iso}T00:00:00`);
+  return Number.isNaN(d.getTime())
+    ? iso
+    : d.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+};
 
 function BlogList() {
   const [posts, setPosts] = useState([]);
@@ -20,6 +33,7 @@ function BlogList() {
         }));
         setPosts(formatted);
       })
+      .catch((err) => console.error("Error fetching posts:", err))
       .finally(() => setLoading(false));
   }, []);
 
@@ -56,34 +70,24 @@ function BlogList() {
   return (
     <div className="tab-content">
       <div className="section-wrap">
-        <div className="blog-grid">
-          {posts.map((post, i) => (
-            <Link key={post.id} to={`/blog/${post.id}`} className="blog-card">
-              <span className="blog-card-index">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-
-              <div className="blog-card-body">
-                <div className="blog-card-top">
-                  {post.tag && (
-                    <span className="blog-card-tag">{post.tag}</span>
-                  )}
-                  <span className="blog-card-date">{post.date}</span>
-                </div>
-
-                <h3 className="blog-card-title">{post.title}</h3>
-
-                {post.excerpt && (
-                  <p className="blog-card-excerpt">{post.excerpt}</p>
-                )}
-
-                <div className="blog-card-footer">
-                  <span className="blog-card-min">{post.min} min read</span>
-                  <span className="blog-card-cta">
-                    Read post <span className="blog-card-arrow">↗</span>
-                  </span>
-                </div>
+        <PageTitle light="Blog" />
+        <div className="blist">
+          {posts.map((post) => (
+            <Link key={post.id} to={`/blog/${post.id}`} className="bcard">
+              <div className="bcard-side">
+                <span>{formatDate(post.date)}</span>
+                {post.min && <span>{post.min} min read</span>}
               </div>
+
+              <div className="bcard-main">
+                {post.tag && <span className="bcard-tag">{post.tag}</span>}
+                <h3 className="bcard-title">{post.title}</h3>
+                {post.excerpt && (
+                  <p className="bcard-excerpt">{post.excerpt}</p>
+                )}
+              </div>
+
+              <FiArrowUpRight className="bcard-arrow" size={18} />
             </Link>
           ))}
         </div>

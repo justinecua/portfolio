@@ -37,11 +37,9 @@
   0%,
   100% {
     opacity: 1;
-    box-shadow: 0 0 8px #3ddc84;
   }
   50% {
-    opacity: 0.4;
-    box-shadow: 0 0 2px #3ddc84;
+    opacity: 0.45;
   }
 }
 

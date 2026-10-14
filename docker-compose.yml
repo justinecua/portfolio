@@ -21,3 +21,13 @@ services:
       "
     ports:
       - "8007:8007"
+    environment:
+      - REDIS_URL=redis://portfolio-redis:6379/0
+    depends_on:
+      - portfolio-redis
+
+  # channel layer for real-time messages (WebSockets)
+  portfolio-redis:
+    image: redis:7-alpine
+    container_name: portfolio-redis
+    restart: unless-stopped

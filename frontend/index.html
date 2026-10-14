@@ -8,6 +8,16 @@
       href="./src/assets/logo_portfolio.jpeg"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap"
+      rel="stylesheet"
+    />
     <title>Justine Cua - Mobile Developer</title>
     <script>
       const saved = localStorage.getItem("theme");
@@ -17,11 +27,7 @@
       } else if (saved === "light") {
         document.documentElement.classList.add("light");
       } else {
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.add("light");
-        }
+        document.documentElement.classList.add("light");
       }
     </script>
   </head>

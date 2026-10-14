@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Skill, Project, Post, PostBlock
+from .models import Skill, Project, Post, PostBlock, Certificate, Conversation, Message
+
 
 class SkillSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,21 +10,139 @@ class SkillSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     stack = SkillSerializer(many=True, read_only=True)
+    # admin writes the stack as a plain list of names
+    stack_names = serializers.ListField(
+        child=serializers.CharField(max_length=100),
+        write_only=True,
+        required=False,
+    )
 
     class Meta:
         model = Project
         fields = "__all__"
 
+    def _set_stack(self, project, names):
+        skills = [
+            Skill.objects.get_or_create(name=name.strip())[0]
+            for name in names
+            if name.strip()
+        ]
+        project.stack.set(skills)
+
+    def create(self, validated_data):
+        names = validated_data.pop("stack_names", [])
+        project = super().create(validated_data)
+        self._set_stack(project, names)
+        return project
+
+    def update(self, instance, validated_data):
+        names = validated_data.pop("stack_names", None)
+        project = super().update(instance, validated_data)
+        if names is not None:
+            self._set_stack(project, names)
+        return project
+
 
 class PostBlockSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostBlock
-        fields = "__all__"
+        fields = ["id", "type", "text", "order"]
+        read_only_fields = ["id", "order"]
 
 
 class PostSerializer(serializers.ModelSerializer):
-    content = PostBlockSerializer(many=True, read_only=True)
+    content = PostBlockSerializer(many=True, required=False)
 
     class Meta:
         model = Post
         fields = "__all__"
+
+    def _set_blocks(self, post, blocks):
+        post.content.all().delete()
+        PostBlock.objects.bulk_create(
+            PostBlock(post=post, type=b["type"], text=b["text"], order=i)
+            for i, b in enumerate(blocks)
+        )
+
+    def create(self, validated_data):
+        blocks = validated_data.pop("content", [])
+        post = super().create(validated_data)
+        self._set_blocks(post, blocks)
+        return post
+
+    def update(self, instance, validated_data):
+        blocks = validated_data.pop("content", None)
+        post = super().update(instance, validated_data)
+        if blocks is not None:
+            self._set_blocks(post, blocks)
+        return post
+
+
+class CertificateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificate
+        fields = "__all__"
+
+    def validate(self, attrs):
+        url = attrs.get("url", getattr(self.instance, "url", ""))
+        file = attrs.get("file", getattr(self.instance, "file", None))
+        if not url and not file:
+            raise serializers.ValidationError(
+                "Add a link to the certificate or upload its file."
+            )
+        return attrs
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ["id", "sender", "body", "created_at"]
+        read_only_fields = ["id", "sender", "created_at"]
+
+    body = serializers.CharField(max_length=4000, trim_whitespace=True)
+
+
+class VisitorConversationSerializer(serializers.ModelSerializer):
+    """What the visitor sees of their own thread."""
+
+    messages = MessageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Conversation
+        fields = ["name", "messages"]
+
+
+class StartConversationSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100, trim_whitespace=True)
+    email = serializers.EmailField(required=False, allow_blank=True)
+    body = serializers.CharField(max_length=4000, trim_whitespace=True)
+
+
+class AdminConversationSerializer(serializers.ModelSerializer):
+    messages = MessageSerializer(many=True, read_only=True)
+    preview = serializers.SerializerMethodField()
+    count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Conversation
+        fields = [
+            "id",
+            "name",
+            "email",
+            "unread_by_owner",
+            "created_at",
+            "updated_at",
+            "preview",
+            "count",
+            "messages",
+        ]
+
+    def get_preview(self, obj):
+        last = obj.messages.last()
+        if not last:
+            return ""
+        prefix = "You: " if last.sender == "owner" else ""
+        return prefix + last.body[:140]
+
+    def get_count(self, obj):
+        return obj.messages.count()
