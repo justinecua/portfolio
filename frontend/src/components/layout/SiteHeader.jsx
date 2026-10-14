@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FiHome, FiFolder, FiEdit3, FiAward, FiMail } from "react-icons/fi";
 import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
 import ThemeToggle from "../ThemeToggle";
-import logo from "../../assets/logo_portfolio.jpeg";
+import profile from "../../assets/profile.jpeg";
 
 const NAV = {
   About: { path: "/", label: "Home", Icon: FiHome },
@@ -26,7 +26,7 @@ function SiteHeader({ tabs }) {
     <header className="site-header">
       <div className="nav-pill">
         <Link to="/" className="nav-logo" aria-label="Home">
-          <img src={logo} alt="" />
+          <img src={profile} alt="" />
         </Link>
 
         <nav className="nav-group" aria-label="Main">

@@ -97,6 +97,7 @@ class AdminProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all().order_by("-created_at")
     serializer_class = ProjectSerializer
     permission_classes = [IsSuperUser]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
 
 class AdminPostViewSet(viewsets.ModelViewSet):

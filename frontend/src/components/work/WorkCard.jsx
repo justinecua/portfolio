@@ -1,3 +1,4 @@
+import ProjectThumb from "./ProjectThumb";
 import { FiArrowUpRight, FiPlay } from "react-icons/fi";
 
 function WorkCard({ project, onClick }) {
@@ -16,8 +17,8 @@ function WorkCard({ project, onClick }) {
       onKeyDown={(e) => e.key === "Enter" && open()}
     >
       <div className="ocard-media ocard-media-video">
-        {project.thumb ? (
-          <img src={project.thumb} alt="" loading="lazy" />
+        {project.thumbs.length ? (
+          <ProjectThumb sources={project.thumbs} loading="lazy" />
         ) : (
           <span className="ocard-placeholder">{project.title.charAt(0)}</span>
         )}
