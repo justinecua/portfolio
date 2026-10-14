@@ -22,6 +22,7 @@ function BlogDetail() {
           content: p.content || [],
         }),
       )
+      .catch((err) => console.error("Error fetching post:", err))
       .finally(() => setLoading(false));
   }, [id]);
 

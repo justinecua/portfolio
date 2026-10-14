@@ -1,58 +1,63 @@
-const CertificateCard = ({ certificate }) => {
-  const isExternalLink =
-    certificate.file.startsWith("http://") ||
-    certificate.file.startsWith("https://");
+import { FiArrowUpRight, FiAward, FiFileText, FiLink } from "react-icons/fi";
 
-  const isPdf = certificate.file.toLowerCase().includes(".pdf");
-  const pdfPreview = `${certificate.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
-  const websitePreview = `https://image.thum.io/get/width/1980/crop/550/${certificate.file}`;
+const CertificateCard = ({ certificate }) => {
+  const href = certificate.file || certificate.url;
+  const isFile = Boolean(certificate.file);
+  const isImage = isFile && /\.(png|jpe?g|webp|gif)$/i.test(certificate.file);
+
+  let preview;
+  if (isImage) {
+    preview = <img src={certificate.file} alt="" loading="lazy" />;
+  } else if (isFile) {
+    preview = (
+      <iframe
+        src={`${certificate.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+        title={certificate.title}
+        loading="lazy"
+        tabIndex="-1"
+      />
+    );
+  } else {
+    let host = "";
+    try {
+      host = new URL(certificate.url).hostname.replace(/^www\./, "");
+    } catch {
+      host = certificate.url;
+    }
+    preview = (
+      <div className="ocard-linkprev">
+        <FiAward size={26} />
+        <span>{host}</span>
+      </div>
+    );
+  }
 
   return (
     <a
-      className="certificate-card"
-      href={certificate.file}
+      className="ocard"
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`View ${certificate.title} certificate`}
     >
-      <div className="pdf-preview">
-        <span className="pdf-badge">
-          {isExternalLink && !isPdf ? "LINK" : "PDF"}
+      <div className="ocard-media ocard-media-doc">
+        {preview}
+        <span className="ocard-badge">
+          {isFile ? <FiFileText size={12} /> : <FiLink size={12} />}
+          {isFile ? "PDF" : "Link"}
         </span>
-
-        {isExternalLink && !isPdf ? (
-          <img
-            src={websitePreview}
-            alt={`${certificate.title} preview`}
-            className="certificate-link-preview"
-            loading="lazy"
-          />
-        ) : (
-          <iframe
-            src={pdfPreview}
-            title={certificate.title}
-            loading="lazy"
-            tabIndex="-1"
-          />
-        )}
-
-        <div className="preview-overlay" />
       </div>
 
-      <div className="card-body">
-        <div className="card-meta">
-          <span className="card-tag">{certificate.date}</span>
-        </div>
+      <div className="ocard-body">
+        <p className="ocard-kicker">{certificate.issuer}</p>
+        <h3 className="ocard-title">{certificate.title}</h3>
+      </div>
 
-        <div className="card-title">
-          <h3>{certificate.title}</h3>
-        </div>
-
-        <p className="card-desc">Issuer: {certificate.issuer}</p>
-
-        <div className="card-footer">
-          <span className="card-link">View Certificate ↗</span>
-        </div>
+      <div className="ocard-foot">
+        <span className="ocard-muted">{certificate.date_label}</span>
+        <span className="ocard-link">
+          View <FiArrowUpRight size={14} />
+        </span>
       </div>
     </a>
   );

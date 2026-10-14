@@ -1,34 +1,62 @@
+import { FiArrowUpRight, FiPlay } from "react-icons/fi";
+
 function WorkCard({ project, onClick }) {
+  const hasDemo = Boolean(project.youtubeId);
+  const open = () => {
+    if (hasDemo) onClick(project);
+    else if (project.site) window.open(project.site, "_blank", "noopener");
+  };
+
   return (
-    <div className="work-card" onClick={() => onClick(project)}>
-      <div className="card-thumb">
-        <img src={project.thumb} alt={project.title} />
-        {/* <div className="card-thumb-overlay" /> */}
-        <span className="card-play">▶</span>
+    <article
+      className="ocard"
+      role="button"
+      tabIndex={0}
+      onClick={open}
+      onKeyDown={(e) => e.key === "Enter" && open()}
+    >
+      <div className="ocard-media ocard-media-video">
+        {project.thumb ? (
+          <img src={project.thumb} alt="" loading="lazy" />
+        ) : (
+          <span className="ocard-placeholder">{project.title.charAt(0)}</span>
+        )}
+        {hasDemo && (
+          <span className="ocard-play" aria-hidden="true">
+            <FiPlay size={16} />
+          </span>
+        )}
       </div>
 
-      <div className="card-body">
-        <div className="card-meta">
-          <span className="card-id">{project.id}</span>
-          <span className="card-tag">{project.tag}</span>
-        </div>
+      <div className="ocard-body">
+        <p className="ocard-kicker">{project.tag}</p>
+        <h3 className="ocard-title">{project.title}</h3>
+        <p className="ocard-desc">{project.desc}</p>
 
-        <h3 className="card-title">{project.title}</h3>
-        <p className="card-desc">{project.desc}</p>
-
-        <div className="card-stack">
-          {project.stack.map((s) => (
-            <span key={s} className="card-chip">
-              {s}
-            </span>
-          ))}
-        </div>
-
-        <div className="card-footer">
-          <span className="card-link">View project ↗</span>
-        </div>
+        {project.stack.length > 0 && (
+          <div className="ocard-chips">
+            {project.stack.map((s) => (
+              <span key={s}>{s}</span>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
+
+      <div className="ocard-foot">
+        <span className="ocard-muted">{hasDemo ? "Watch demo" : ""}</span>
+        {project.site && (
+          <a
+            href={project.site}
+            target="_blank"
+            rel="noreferrer"
+            className="ocard-link"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Visit site <FiArrowUpRight size={14} />
+          </a>
+        )}
+      </div>
+    </article>
   );
 }
 

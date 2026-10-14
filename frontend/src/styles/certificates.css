@@ -10,21 +10,11 @@
 
 .certificate-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
 }
 
-@media (max-width: 1000px) {
-  .certificate-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 640px) {
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-
   .certificates h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
@@ -34,7 +24,7 @@
 .certificate-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   cursor: pointer;
   display: flex;
@@ -47,8 +37,8 @@
 
 .certificate-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px -12px rgba(15, 23, 42, 0.12);
-  border-color: #d1d5db;
+  box-shadow: var(--card-shadow);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .pdf-preview {
@@ -56,7 +46,7 @@
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: #f3f4f6;
+  background: var(--surface);
 }
 
 .pdf-preview iframe {
@@ -83,7 +73,7 @@
   background: linear-gradient(
     180deg,
     transparent 70%,
-    rgba(255, 255, 255, 0.9) 100%
+    var(--card-bg) 100%
   );
 }
 
@@ -92,14 +82,14 @@
   top: 14px;
   left: 14px;
   z-index: 2;
-  background: #ffffff;
-  color: #374151;
+  background: var(--card-bg);
+  color: var(--text);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
 }
 
 .certificate-info {

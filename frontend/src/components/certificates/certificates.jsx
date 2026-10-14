@@ -1,46 +1,40 @@
-import ReactCertificate from "../../assets/certificates/PSIT_Laravel_Cert.pdf";
-import GDG from "../../assets/certificates/GDG.pdf";
+import { useEffect, useState } from "react";
+import { FiAward } from "react-icons/fi";
 import CertificateCard from "./CertificateCard";
+import PageTitle from "../layout/PageTitle";
+import Spinner from "../Spinner";
 
 const Certificates = () => {
-  const certificates = [
-    {
-      title: "Linux TestDome Certificate",
-      issuer: "TestDome",
-      category: "TestDome",
-      file: "https://www.testdome.com/certificates/0b3f53d3e6ed45c7a8c30230f3d9de0a",
-      date: "July 18, 2026",
-    },
-    {
-      title: "SQL TestDome Certificate",
-      issuer: "TestDome",
-      category: "TestDome",
-      file: "https://www.testdome.com/certificates/18144616f8274aa0b7b4ddbe4f225d31",
-      date: "July 18, 2026",
-    },
-    {
-      title: "3 Day Laravel Framework Training",
-      issuer: "Philippine Society of Information Technology Educators",
-      category: "Backend Development",
-      file: ReactCertificate,
-      date: "June 24-26, 2026",
-    },
-    {
-      title:
-        "Multimodal AI with Firebase using Gemini with Extensions and GenKit",
-      issuer: "GDG Cagayan de Oro",
-      category: "Backend Development",
-      file: GDG,
-      date: "Nov 16, 2024",
-    },
-  ];
+  const [certificates, setCertificates] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}certificates/`)
+      .then((res) => res.json())
+      .then(setCertificates)
+      .catch((err) => console.error("Error fetching certificates:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <Spinner />;
+
+  if (!certificates.length)
+    return (
+      <div className="tab-content center">
+        <div className="empty-icon">
+          <FiAward size={22} />
+        </div>
+        <p className="muted">No certificates yet.</p>
+      </div>
+    );
 
   return (
     <div className="tab-content">
       <div className="section-wrap">
-        <div className="certificate-grid">
+        <PageTitle light="Certificates" />
+        <div className="card-grid">
           {certificates.map((cert) => (
-            <CertificateCard key={cert.title} certificate={cert} />
+            <CertificateCard key={cert.id} certificate={cert} />
           ))}
         </div>
       </div>
