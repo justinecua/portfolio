@@ -37,7 +37,14 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
 SITE_ID = 1
 
-CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
+# An origin is scheme + host (+ port) only. Tolerate stray spaces and a
+# trailing slash ("https://example.com/") in the env value; corsheaders
+# refuses to start if an origin has any path.
+CORS_ALLOWED_ORIGINS = [
+    origin.strip().rstrip("/")
+    for origin in os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
+    if origin.strip()
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
