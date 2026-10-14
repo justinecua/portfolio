@@ -27,6 +27,7 @@ import {
   SiLinux,
 } from "react-icons/si";
 import { skills } from "../../data/data";
+import PhotoLightbox from "./PhotoLightbox";
 import Clock from "../layout/Clock";
 import profileCutout from "../../assets/profile-cutout.png";
 import profilePhoto from "../../assets/profile.jpeg";
@@ -239,6 +240,7 @@ const EMAIL = "jcua.dev@gmail.com";
 
 function InfoTab() {
   const [copied, setCopied] = useState(false);
+  const [viewing, setViewing] = useState(null); // index of the open photo
 
   const copyEmail = async () => {
     try {
@@ -359,11 +361,26 @@ function InfoTab() {
 
         <div className="photos">
           {ABOUT_PHOTOS.map((src, i) => (
-            <figure key={src} className="photo" style={{ "--i": i }}>
+            <button
+              key={src}
+              type="button"
+              className="photo"
+              onClick={() => setViewing(i)}
+              aria-label={`View photo ${i + 1} of ${ABOUT_PHOTOS.length}`}
+            >
               <img src={src} alt="" loading="lazy" />
-            </figure>
+            </button>
           ))}
         </div>
+
+        {viewing !== null && (
+          <PhotoLightbox
+            photos={ABOUT_PHOTOS}
+            index={viewing}
+            onChange={setViewing}
+            onClose={() => setViewing(null)}
+          />
+        )}
 
         <div className="story-text">
           <p>

@@ -157,6 +157,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# The migrations use 64-bit ids (Django 6's default). Set it explicitly so
+# Django 4.2 on the server agrees and doesn't try to shrink them.
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
