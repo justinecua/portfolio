@@ -20,7 +20,7 @@ from django.conf import settings  # noqa: E402
 from core.routing import websocket_urlpatterns  # noqa: E402
 
 # Only the site's own frontend may open sockets (same list as CORS).
-allowed_origins = [o for o in settings.CORS_ALLOWED_ORIGINS if o]
+allowed_origins = settings.CORS_ALLOWED_ORIGINS
 
 application = ProtocolTypeRouter(
     {
