@@ -1,0 +1,10 @@
+# local-only files that shouldn't be baked into the image
+# (.env is intentionally NOT ignored: settings.py loads it in the container)
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+media/
+db.sqlite3
+.DS_Store
