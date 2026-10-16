@@ -1,4 +1,4 @@
-export const TABS = ["About", "Blog", "Projects", "Certificates"];
+export const TABS = ["About", "Blog", "Projects", "Prototypes", "Certificates"];
 
 export const projects = [
   {

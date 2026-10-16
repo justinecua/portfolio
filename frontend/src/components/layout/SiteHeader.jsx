@@ -1,5 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
-import { FiHome, FiFolder, FiEdit3, FiAward, FiMail } from "react-icons/fi";
+import {
+  FiHome,
+  FiFolder,
+  FiEdit3,
+  FiAward,
+  FiMail,
+  FiLayout,
+} from "react-icons/fi";
 import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
 import ThemeToggle from "../ThemeToggle";
 import profile from "../../assets/profile.jpeg";
@@ -8,6 +15,7 @@ const NAV = {
   About: { path: "/", label: "Home", Icon: FiHome },
   Projects: { path: "/projects", label: "Projects", Icon: FiFolder },
   Blog: { path: "/blog", label: "Blog", Icon: FiEdit3 },
+  Prototypes: { path: "/prototypes", label: "Prototypes", Icon: FiLayout },
   Certificates: { path: "/certificates", label: "Certificates", Icon: FiAward },
 };
 

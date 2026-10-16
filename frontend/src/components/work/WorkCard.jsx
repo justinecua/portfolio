@@ -18,7 +18,15 @@ function WorkCard({ project, onClick }) {
     >
       <div className="ocard-media ocard-media-video">
         {project.thumbs.length ? (
-          <ProjectThumb sources={project.thumbs} loading="lazy" />
+          <ProjectThumb
+            sources={project.thumbs}
+            loading="lazy"
+            fallback={
+              <span className="ocard-placeholder">
+                {project.title.charAt(0)}
+              </span>
+            }
+          />
         ) : (
           <span className="ocard-placeholder">{project.title.charAt(0)}</span>
         )}
