@@ -92,6 +92,18 @@ function ChatWidget() {
     return () => window.removeEventListener("toggle-chat", toggleChat);
   }, []);
 
+  // prototypes link here with ?chat=open&msg=... so a business owner
+  // lands straight in the chat with a starter message
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("chat") !== "open") return;
+    setOpen(true);
+    const msg = params.get("msg");
+    if (!msg) return;
+    setForm((f) => ({ ...f, body: msg }));
+    setDraft(msg);
+  }, []);
+
   // mark replies as seen while the panel is open
   useEffect(() => {
     if (open && thread) setSeen(ownerCount(thread));

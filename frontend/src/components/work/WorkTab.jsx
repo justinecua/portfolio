@@ -24,7 +24,14 @@ function FeaturedProject({ project, onPlay }) {
         aria-label={hasDemo ? `Watch ${project.title} demo` : project.title}
       >
         {project.thumbs.length ? (
-          <ProjectThumb sources={project.thumbs} />
+          <ProjectThumb
+            sources={project.thumbs}
+            fallback={
+              <span className="ocard-placeholder">
+                {project.title.charAt(0)}
+              </span>
+            }
+          />
         ) : (
           <span className="ocard-placeholder">{project.title.charAt(0)}</span>
         )}
@@ -108,11 +115,7 @@ function WorkTab() {
     <>
       <div className="tab-content">
         <div className="section-wrap">
-          <PageTitle
-            light="Projects"
-            count={projects.length}
-          
-          >
+          <PageTitle light="Projects" count={projects.length}>
             {options.length > 2 && (
               <FilterChips
                 options={options}
