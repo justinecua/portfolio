@@ -4,13 +4,14 @@ import { useState } from "react";
 // so treat anything that small as missing too.
 const PLACEHOLDER_WIDTH = 120;
 
-// Shows the first image in `sources` that actually loads.
-function ProjectThumb({ sources = [], alt = "", ...props }) {
+// Shows the first image in `sources` that actually loads; if none do,
+// shows `fallback` instead of a broken-image icon.
+function ProjectThumb({ sources = [], alt = "", fallback = null, ...props }) {
   const [index, setIndex] = useState(0);
   const src = sources[index];
-  if (!src) return null;
+  if (!src) return fallback;
 
-  const next = () => setIndex((i) => (i + 1 < sources.length ? i + 1 : i));
+  const next = () => setIndex((i) => i + 1);
 
   return (
     <img

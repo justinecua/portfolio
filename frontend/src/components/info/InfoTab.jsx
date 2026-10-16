@@ -32,6 +32,8 @@ import PhotoLightbox from "./PhotoLightbox";
 import useProjects from "../../hooks/useProjects";
 import Modal from "../work/Modal";
 import ProjectThumb from "../work/ProjectThumb";
+import PrototypeCard from "../prototypes/PrototypeCard";
+import { PROTOTYPES } from "../../prototypes";
 import Clock from "../layout/Clock";
 import profileCutout from "../../assets/profile-cutout.png";
 import profilePhoto from "../../assets/profile.jpeg";
@@ -225,6 +227,9 @@ function WorkMedia({ item, project, onPlay }) {
           sources={project.thumbs}
           alt={project.title}
           loading="lazy"
+          fallback={
+            <span className="ocard-placeholder">{project.title.charAt(0)}</span>
+          }
         />
         {hasDemo && (
           <span className="pcard-play" aria-hidden="true">
@@ -290,6 +295,9 @@ function WorkMedia({ item, project, onPlay }) {
 
 const EMAIL = "jcua.dev@gmail.com";
 
+// how many prototypes the home page previews; the rest live on /prototypes
+const HOME_PROTOTYPES = 2;
+
 function InfoTab() {
   const [copied, setCopied] = useState(false);
   const [viewing, setViewing] = useState(null); // index of the open photo
@@ -319,7 +327,8 @@ function InfoTab() {
           </h1>
 
           <p className="hero-text">
-            I am a developer from Iligan City, Philippines. I build web systems and mobile apps, then teach my students how to build their own.
+            I am a developer from Iligan City, Philippines. I build web systems
+            and mobile apps, then teach my students how to build their own.
           </p>
         </div>
 
@@ -406,6 +415,30 @@ function InfoTab() {
         </div>
       </Section>
 
+      {/* ─── PROTOTYPES ─── */}
+      {PROTOTYPES.length > 0 && (
+        <Section>
+          <h2 className="sec-title">
+            Website concepts <em>for local businesses</em>
+          </h2>
+
+          <div className="proto-grid">
+            {PROTOTYPES.slice(0, HOME_PROTOTYPES).map((p) => (
+              <PrototypeCard key={p.slug} prototype={p} />
+            ))}
+          </div>
+
+          <div className="center-row">
+            <Link to="/prototypes" className="btn-outline">
+              {PROTOTYPES.length > HOME_PROTOTYPES
+                ? `All ${PROTOTYPES.length} prototypes`
+                : "All prototypes"}{" "}
+              <FiArrowUpRight size={15} />
+            </Link>
+          </div>
+        </Section>
+      )}
+
       {/* ─── STORY ─── */}
       <Section className="story">
         <h2 className="sec-title">About</h2>
@@ -414,9 +447,12 @@ function InfoTab() {
           <p>
             I’m one of the staff of the{" "}
             <strong>ICTC Department at St. Michael’s College of Iligan</strong>,
-            where I also teach <strong>Programming subjects like Object Oriented Programming and 
-            Fundamentals of Databases</strong> to 2nd and 3rd
-            year students.
+            where I also teach{" "}
+            <strong>
+              Programming subjects like Object Oriented Programming and
+              Fundamentals of Databases
+            </strong>{" "}
+            to 2nd and 3rd year students.
           </p>
         </div>
 

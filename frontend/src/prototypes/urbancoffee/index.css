@@ -1,0 +1,178 @@
+@import "tailwindcss" source("./");
+
+@theme {
+  --color-paper: #efebe3;
+  --color-paper-deep: #e4dfd4;
+  --color-ink: #151311;
+  --color-urban: #c0161f;
+  --color-urban-deep: #9a0f17;
+
+  /* Design B — Reel */
+  --color-rl-bg: #070707;
+  --color-rl-panel: #121212;
+  --color-rl-white: #f5f5f2;
+  --color-rl-muted: #858582;
+  --font-sora: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-urbanist: "Urbanist", ui-sans-serif, system-ui, sans-serif;
+
+  /* Design G — Receipt */
+  --color-rc-bg: #0a0a0a;
+  --color-rc-paper: #f4f2ec;
+  --color-rc-white: #ededea;
+  --color-rc-muted: #7d7d79;
+  --font-plex: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Design H — Lens */
+  --color-ln-bg: #080808;
+  --color-ln-white: #f3f3f1;
+  --color-ln-muted: #868683;
+  --font-geist: "Geist", ui-sans-serif, system-ui, sans-serif;
+
+  /* Design I — Tray */
+  --color-tr-bg: #0c0c0c;
+  --color-tr-card: #161616;
+  --color-tr-line: #262626;
+  --color-tr-white: #f4f4f2;
+  --color-tr-muted: #8a8a87;
+  --font-onest: "Onest", ui-sans-serif, system-ui, sans-serif;
+
+  /* Design C — Noir */
+  --color-nr-bg: #0b0b0b;
+  --color-nr-surface: #151514;
+  --color-nr-raised: #1e1d1b;
+  --color-nr-text: #f1ede6;
+  --color-nr-muted: #8c8880;
+  --color-nr-accent: #d2a679;
+  --font-tight: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+
+  /* Design D — Charcoal */
+  --color-ch-bg: #0f0e0d;
+  --color-ch-card: #191715;
+  --color-ch-raised: #221f1c;
+  --color-ch-text: #f4efe8;
+  --color-ch-muted: #9a938a;
+  --color-ch-matcha: #b8cc7a;
+  --color-ch-matcha-deep: #3d4a22;
+
+  /* Design E — Split (strictly the logo's black + white) */
+  --color-sp-black: #000000;
+  --color-sp-ink: #0d0d0d;
+  --color-sp-white: #f7f7f5;
+  --color-sp-gray: #8b8b88;
+  --font-manrope: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  /* Design F — Stack */
+  --color-st-bg: #050505;
+  --color-st-card: #111111;
+  --color-st-card2: #1a1a1a;
+  --color-st-white: #fafaf8;
+  --color-st-muted: #8d8d8a;
+  --font-jakarta: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  --animate-ticker: ticker 45s linear infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes grow {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+  body {
+    @apply bg-paper antialiased;
+    /* undo the portfolio's body/em styles, which preflight doesn't reset */
+    font-family: inherit;
+    color: inherit;
+  }
+  em {
+    font-style: italic;
+    color: inherit;
+  }
+  /* Paper grain over the Broadsheet design */
+  .bs-root::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.12;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection {
+    @apply bg-urban text-paper;
+  }
+}
+
+@layer components {
+  /* Newsprint halftone — goes full colour on hover */
+  .halftone {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-paper);
+  }
+  .halftone img {
+    filter: grayscale(1) contrast(1.35) brightness(1.05);
+    transition: filter 0.8s ease, transform 1.2s ease;
+  }
+  .halftone::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgb(0 0 0 / 0.38) 0.9px, transparent 1.3px);
+    background-size: 4px 4px;
+    mix-blend-mode: multiply;
+    transition: opacity 0.8s ease;
+  }
+  .halftone:hover img {
+    filter: none;
+    transform: scale(1.03);
+  }
+  .halftone:hover::after {
+    opacity: 0;
+  }
+
+  .rule-double {
+    border-top: 3px double var(--color-ink);
+  }
+  .leaders {
+    flex: 1;
+    min-width: 1rem;
+    border-bottom: 1.5px dotted rgb(21 19 17 / 0.45);
+    transform: translateY(-0.3em);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}

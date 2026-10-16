@@ -168,6 +168,10 @@ STATIC_URL = 'static/'
 # Django 4.2 on the server agrees and doesn't try to shrink them.
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Behind Cloudflare + nginx the app itself only sees plain HTTP. Trust the
+# proxy's X-Forwarded-Proto so absolute URLs (e.g. uploaded media) use https.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
