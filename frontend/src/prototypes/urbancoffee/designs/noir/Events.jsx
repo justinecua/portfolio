@@ -10,7 +10,7 @@ export default function Events() {
   return (
     <section id="events" className="mx-auto max-w-[1440px] px-5 py-28 md:px-10 md:py-40">
       <Reveal>
-        <Head n="03" label="Events" aside={<p className="text-sm">Markets, music and makers — the space opens up every season.</p>}>
+        <Head n="03" label="Events" aside={<p className="text-sm">Markets, music and makers - the space opens up every season.</p>}>
           What&rsquo;s <Accent>on</Accent>
         </Head>
       </Reveal>
@@ -22,7 +22,7 @@ export default function Events() {
           return (
             <Reveal as="li" key={e.key} delay={i * 80} className="group border-b border-white/10">
               <a
-                href={live ? `mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} — merchant slot`)}` : undefined}
+                href={live ? `mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} - merchant slot`)}` : undefined}
                 className={`grid items-center gap-6 py-8 md:grid-cols-12 md:py-10 ${live ? 'cursor-pointer' : 'cursor-default'}`}
               >
                 <div className="md:col-span-3">

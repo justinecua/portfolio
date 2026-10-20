@@ -1,6 +1,6 @@
 // Shared by every design prototype.
 // Item names + descriptions for Pigeon Matcha and the kitchen come from Urban's own posts.
-// Coffee items and ALL prices are placeholders — confirm with the client.
+// Coffee items and ALL prices are placeholders - confirm with the client.
 export const menu = [
   {
     key: 'coffee',

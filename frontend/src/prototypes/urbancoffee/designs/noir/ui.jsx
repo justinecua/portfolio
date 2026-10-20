@@ -2,7 +2,7 @@ export { Bird, Reveal } from '../shared'
 
 /*
  * One typeface (Inter Tight), one scale. Every text style in this design comes from here.
- * Emphasis comes from weight + colour (light, warm accent) — never a second font.
+ * Emphasis comes from weight + colour (light, warm accent) - never a second font.
  */
 export const T = {
   display: 'text-[clamp(3.4rem,10vw,9.5rem)] leading-[0.88] font-medium tracking-[-0.045em]',

@@ -13,9 +13,9 @@ const details = [
 const crafts = ['Tattoo artists', 'Graphic designers', 'Illustrators', 'Painters', 'Crafts, atbp.']
 
 const posters = [
-  { src: popart, alt: 'Pop Art Market poster with Halloween icons', cap: 'No. 1 — The announcement' },
-  { src: red, alt: 'Urban Coffee Studio has always had a thing for artists', cap: 'No. 2 — The confession' },
-  { src: slots, alt: 'Slots are still open — calling all artists', cap: 'No. 3 — The call' },
+  { src: popart, alt: 'Pop Art Market poster with Halloween icons', cap: 'No. 1 - The announcement' },
+  { src: red, alt: 'Urban Coffee Studio has always had a thing for artists', cap: 'No. 2 - The confession' },
+  { src: slots, alt: 'Slots are still open - calling all artists', cap: 'No. 3 - The call' },
 ]
 
 /* Each letter in its own frame, like the poster */
@@ -55,7 +55,7 @@ export default function Market() {
 
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-paper/90">
               For one week the café becomes a night market of local makers. Tattoo flash, prints, paintings, stickers,
-              crafts — and the bar open the whole time.
+              crafts - and the bar open the whole time.
             </p>
 
             <ul className="mt-6 flex flex-wrap gap-x-3 gap-y-2 font-mono text-xs tracking-wider uppercase">

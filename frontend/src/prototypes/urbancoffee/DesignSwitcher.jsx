@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-/* Prototype picker for client reviews — a plain dropdown, deliberately unstyled-looking. Not part of any design. */
+/* Prototype picker for client reviews - a plain dropdown, deliberately unstyled-looking. Not part of any design. */
 export default function DesignSwitcher({ designs, current, onChange }) {
   useEffect(() => {
     const onKey = (e) => {
@@ -22,7 +22,7 @@ export default function DesignSwitcher({ designs, current, onChange }) {
       >
         {designs.map((d) => (
           <option key={d.id} value={d.id}>
-            {d.letter} — {d.name}
+            {d.letter} - {d.name}
           </option>
         ))}
       </select>

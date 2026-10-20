@@ -89,7 +89,7 @@ export function Welcome() {
             <span className="text-sp-gray">Tambayan.</span>
           </p>
           <p className={`${T.body} mt-8 max-w-md text-sp-ink/70`}>
-            Roasted in-house, poured late, and served to freelancers, friends, and the artists of {contact.city} — at two
+            Roasted in-house, poured late, and served to freelancers, friends, and the artists of {contact.city} - at two
             branches, Tibanga and Diocesan.
           </p>
         </Reveal>
@@ -106,7 +106,7 @@ export function MenuList() {
   const cats = menu.filter((c) => c.key !== 'matcha')
   return (
     <div className={wide}>
-      <Head n="01 — Menu" title="What we serve." blurb="Coffee, kitchen, and something sweet. Hover a dish to see it in colour." />
+      <Head n="01 - Menu" title="What we serve." blurb="Coffee, kitchen, and something sweet. Hover a dish to see it in colour." />
       <div className="grid gap-14 lg:grid-cols-3 lg:gap-10">
         {cats.map((c) => (
           <Reveal key={c.key}>
@@ -150,7 +150,7 @@ export function MatchaGrid() {
   const drinks = menu.find((c) => c.key === 'matcha').items
   return (
     <div className={wide}>
-      <Head n="02 — Pigeon Matcha" title="Seven ways to fly." blurb="Seven drinks, each named after how a pigeon moves through the city." />
+      <Head n="02 - Pigeon Matcha" title="Seven ways to fly." blurb="Seven drinks, each named after how a pigeon moves through the city." />
       <div className="grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
         {drinks.map((d, i) => (
           <Reveal key={d.name} delay={(i % 2) * 80} className="group">
@@ -182,7 +182,7 @@ const posters = { tambayan, fiesta, popart }
 export function EventList() {
   return (
     <div className={wide}>
-      <Head n="03 — Events" title="This season." blurb="Markets, music and makers — the space opens up a few times a year." />
+      <Head n="03 - Events" title="This season." blurb="Markets, music and makers - the space opens up a few times a year." />
       <div className="grid gap-12 lg:grid-cols-3 lg:gap-8">
         {events.map((e) => {
           const s = eventStatus(e)
@@ -202,7 +202,7 @@ export function EventList() {
                 <p className={`${T.small} mt-3 text-sp-ink/65`}>{e.blurb}</p>
                 {live && (
                   <a
-                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} — merchant slot`)}`}
+                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} - merchant slot`)}`}
                     className="mt-6 inline-flex w-fit items-center gap-3 bg-sp-black px-5 py-3 text-sm font-bold text-sp-white transition hover:bg-sp-ink/80"
                   >
                     Apply for a slot →
@@ -220,7 +220,7 @@ export function EventList() {
 export function SpaceGrid() {
   return (
     <div className={wide}>
-      <Head n="04 — Space" title="The tambayan." blurb="Two floors, a roof deck, and room for whatever you’re making." />
+      <Head n="04 - Space" title="The tambayan." blurb="Two floors, a roof deck, and room for whatever you’re making." />
       <Reveal className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <img src={interior} alt="Baristas behind the bar" className="col-span-2 aspect-[16/10] w-full object-cover lg:row-span-2 lg:aspect-auto lg:h-full" />
         <img src={reading} alt="Customers reading over matcha" className="aspect-square w-full object-cover object-[30%_50%]" />
@@ -247,7 +247,7 @@ const branchImg = { tibanga: [storefront, '50% 40%'], diocesan: [diocesan, '50% 
 export function VisitInfo() {
   return (
     <div className="p-6 md:p-12">
-      <MobileHead n="05 — Visit" title="Come through" />
+      <MobileHead n="05 - Visit" title="Come through" />
       <div className="space-y-12">
         {branches.map((b) => (
           <Reveal key={b.key}>

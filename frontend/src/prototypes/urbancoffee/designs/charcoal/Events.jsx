@@ -41,7 +41,7 @@ export default function Events() {
                     <p className={`${T.h3} mt-2 font-extrabold`}>{e.name}</p>
                     <p className={`${T.small} mt-2 text-ch-muted`}>{e.blurb}</p>
                     {live && (
-                      <Btn href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} — merchant slot`)}`} primary className="mt-5">
+                      <Btn href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} - merchant slot`)}`} primary className="mt-5">
                         Apply for a slot →
                       </Btn>
                     )}

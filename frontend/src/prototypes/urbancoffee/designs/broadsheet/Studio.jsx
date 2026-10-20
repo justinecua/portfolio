@@ -2,7 +2,7 @@ import interior from '../../assets/interior.webp'
 import { Mono, Photo, Reveal, SectionHead, Star } from './ui'
 
 const facts = [
-  { n: '01', k: 'Roasted here', v: 'Green beans in, house roast out — every shot pulled from our own batches.' },
+  { n: '01', k: 'Roasted here', v: 'Green beans in, house roast out - every shot pulled from our own batches.' },
   { n: '02', k: 'Two floors', v: 'The bar downstairs, murals and long tables upstairs, a deck up top.' },
   { n: '03', k: 'Open late', v: 'Most nights the lights stay on until midnight.' },
 ]
@@ -36,13 +36,13 @@ export default function Studio() {
               crafters set up shop next to people who just came for an iced latte. If you&rsquo;ve visited, you&rsquo;ve
               probably noticed.
             </p>
-            <p className="mb-4">We like it that way — and we keep making room for it.</p>
+            <p className="mb-4">We like it that way - and we keep making room for it.</p>
           </div>
 
           <blockquote className="my-8 border-y border-ink py-6 text-center">
             <Star points={8} className="mx-auto mb-3 h-5 w-5 text-urban" />
             <p className="font-serif text-3xl leading-tight italic">“Come for the coffee. Stay because somebody is drawing on the next table.”</p>
-            <Mono className="mt-3 text-ink/60">— The house rules, more or less</Mono>
+            <Mono className="mt-3 text-ink/60">- The house rules, more or less</Mono>
           </blockquote>
 
           <dl className="divide-y divide-ink/20">

@@ -35,7 +35,7 @@ export function Gallery() {
       <div className="mx-auto mb-10 max-w-7xl px-4 md:px-6">
         <Reveal className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <Pair light="The" bold="tambayan" />
-          <p className={`${T.body} max-w-sm text-ch-muted`}>Freelancers, friends, and artists — two floors and a roof deck of them.</p>
+          <p className={`${T.body} max-w-sm text-ch-muted`}>Freelancers, friends, and artists - two floors and a roof deck of them.</p>
         </Reveal>
       </div>
       <div className="space-y-3 md:space-y-4" aria-hidden="true">

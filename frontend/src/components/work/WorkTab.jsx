@@ -103,7 +103,7 @@ function WorkTab() {
           </svg>
         </div>
         <p className="muted">No projects yet.</p>
-        <p className="muted-sub">Working on something — will be here soon.</p>
+        <p className="muted-sub">Working on something - will be here soon.</p>
       </div>
     );
 

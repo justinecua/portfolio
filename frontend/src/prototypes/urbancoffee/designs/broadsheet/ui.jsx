@@ -2,7 +2,7 @@ import { Star } from '../shared'
 
 export { Bird, Reveal, Star } from '../shared'
 
-/* An "O" with a star punched in the middle — the posters' signature letter */
+/* An "O" with a star punched in the middle - the posters' signature letter */
 export function O({ points = 6, starClass = 'text-urban' }) {
   return (
     <span className="relative">
@@ -19,7 +19,7 @@ export function Mono({ children, className = '' }) {
   return <p className={`font-mono text-[11px] tracking-[0.18em] uppercase ${className}`}>{children}</p>
 }
 
-/* Newspaper section header: "Section B ——— The Studio ——— p. 2" */
+/* Newspaper section header: "Section B --- The Studio --- p. 2" */
 export function SectionHead({ letter, title, page, className = 'border-ink' }) {
   return (
     <div className={`flex items-center gap-4 border-y py-2 ${className}`}>
