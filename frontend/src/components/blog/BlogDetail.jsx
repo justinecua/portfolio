@@ -156,7 +156,7 @@ function PostPage({ id }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      // clipboard blocked — nothing to do
+      // clipboard blocked - nothing to do
     }
   };
 

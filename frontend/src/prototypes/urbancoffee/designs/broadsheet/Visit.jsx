@@ -1,7 +1,7 @@
 import night from '../../assets/storefront-night.webp'
 import { Bird, Mono, Photo, Reveal, SectionHead } from './ui'
 
-// Hours are placeholders — confirm with the store.
+// Hours are placeholders - confirm with the store.
 const hours = [
   { d: 'Mon – Thu', h: '7 AM – 11 PM' },
   { d: 'Fri – Sat', h: '7 AM – 12 MN' },
@@ -64,7 +64,7 @@ export default function Visit() {
             <Bird className="h-16 w-16 text-urban" />
             <p className="text-sm leading-relaxed text-ink/75">
               <strong className="text-ink">Artists, makers, musicians:</strong> we&rsquo;re always looking for walls to
-              hang, tables to fill, and corners to play in. Send us your work — the next market, mural, or acoustic night
+              hang, tables to fill, and corners to play in. Send us your work - the next market, mural, or acoustic night
               might be yours.
             </p>
           </div>

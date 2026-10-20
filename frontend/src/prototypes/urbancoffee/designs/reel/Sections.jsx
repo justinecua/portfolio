@@ -18,7 +18,7 @@ export function Events() {
   return (
     <section id="events" className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
       <Reveal>
-        <SectionHead n="02 — Events" title="This season." aside="Markets, music and makers — the space opens up a few times a year." />
+        <SectionHead n="02 - Events" title="This season." aside="Markets, music and makers - the space opens up a few times a year." />
       </Reveal>
       <ul className="mt-12">
         {events.map((e, i) => {
@@ -38,7 +38,7 @@ export function Events() {
               <div className="md:col-span-2 md:text-right">
                 {live ? (
                   <a
-                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} — merchant slot`)}`}
+                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} - merchant slot`)}`}
                     className="inline-block rounded-full bg-rl-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-rl-white/80"
                   >
                     {s.label} · Apply
@@ -59,7 +59,7 @@ export function Space() {
   return (
     <section id="space" className="mx-auto max-w-7xl px-5 pb-24 md:px-10 md:pb-32">
       <Reveal>
-        <SectionHead n="03 — Space" title="The tambayan." aside="Two floors, a roof deck, and room for whatever you’re making." />
+        <SectionHead n="03 - Space" title="The tambayan." aside="Two floors, a roof deck, and room for whatever you’re making." />
       </Reveal>
       <Reveal className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-6">
         <img src={interior} alt="Baristas behind the bar" className="col-span-2 aspect-[4/3] w-full rounded-[2rem] object-cover md:col-span-4 md:row-span-2 md:aspect-auto md:h-full" />
@@ -78,7 +78,7 @@ export function Visit() {
   return (
     <section id="visit" className="mx-auto max-w-7xl px-5 pb-24 md:px-10 md:pb-32">
       <Reveal>
-        <SectionHead n="04 — Visit" title="Come through." />
+        <SectionHead n="04 - Visit" title="Come through." />
       </Reveal>
       <div className="mt-12 grid gap-4 md:grid-cols-2">
         {branches.map((b, i) => (

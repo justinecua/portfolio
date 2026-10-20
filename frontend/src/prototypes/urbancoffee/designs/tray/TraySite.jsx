@@ -24,7 +24,7 @@ import { contact, eventStatus, events } from '../../content/events'
 import { branches, mapsUrl } from '../../content/branches'
 
 /*
- * One typeface (Onest), one scale — every text style comes from here.
+ * One typeface (Onest), one scale - every text style comes from here.
  * Palette is the logo's: black and white, with greys between.
  */
 const T = {
@@ -109,7 +109,7 @@ function useTray() {
 }
 
 function orderMailto(lines, total) {
-  const body = [...lines.map((l) => `${l.qty} × ${l.name} — ${peso(l.qty * l.price)}`), '', `Total: ${peso(total)}`, '', 'Name:', 'Pickup time:', 'Branch (Tibanga / Diocesan):'].join('\n')
+  const body = [...lines.map((l) => `${l.qty} × ${l.name} - ${peso(l.qty * l.price)}`), '', `Total: ${peso(total)}`, '', 'Name:', 'Pickup time:', 'Branch (Tibanga / Diocesan):'].join('\n')
   return `mailto:${contact.email}?subject=${encodeURIComponent('Order for pickup')}&body=${encodeURIComponent(body)}`
 }
 
@@ -324,7 +324,7 @@ export default function TraySite() {
             <Label>Roastery + Kitchen · {contact.city}</Label>
             <h1 className={`${T.display} mt-4`}>Order ahead. Skip the line. Stay a while.</h1>
             <p className={`${T.small} mt-5 max-w-md text-tr-muted`}>
-              {contact.tagline} Build your order below and send it over — we&rsquo;ll have it ready at the counter.
+              {contact.tagline} Build your order below and send it over - we&rsquo;ll have it ready at the counter.
             </p>
             <a href="#menu" className="mt-7 inline-block rounded-full bg-tr-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-tr-white/85">
               Start an order
@@ -364,7 +364,7 @@ export default function TraySite() {
                   <p className={`${T.h3} mt-1`}>{e.name}</p>
                   <p className={`mt-1 line-clamp-2 text-[13px] leading-snug ${live ? 'text-black/65' : 'text-tr-muted'}`}>{e.blurb}</p>
                   {live && (
-                    <a href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} — merchant slot`)}`} className="mt-auto pt-2 text-sm font-semibold underline underline-offset-4">
+                    <a href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} - merchant slot`)}`} className="mt-auto pt-2 text-sm font-semibold underline underline-offset-4">
                       Apply for a slot
                     </a>
                   )}

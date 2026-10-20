@@ -27,7 +27,7 @@ export default function UrbanCoffee() {
 
   return (
     <>
-      <title>Urban Coffee Studio — Concept by Justine Cua</title>
+      <title>Urban Coffee Studio - Concept by Justine Cua</title>
       {/* unofficial concept: keep it out of search so it never competes with the real business */}
       <meta name="robots" content="noindex, nofollow" />
       <App />

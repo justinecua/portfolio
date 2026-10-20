@@ -92,7 +92,7 @@ export default function MenuReel() {
         {/* Reel header: title, category ticks, progress */}
         <div className="flex items-end justify-between gap-6 px-5 pt-24 md:px-10">
           <div>
-            <Label>01 — Menu</Label>
+            <Label>01 - Menu</Label>
             <p className={`${T.h3} mt-2`}>What we&rsquo;re pouring</p>
           </div>
           {wide && (

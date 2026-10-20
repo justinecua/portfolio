@@ -60,7 +60,7 @@ function BlogList() {
         </div>
         <p className="muted">No posts yet.</p>
         <p className="muted-sub">
-          Check back soon — something's being written.
+          Check back soon - something's being written.
         </p>
       </div>
     );

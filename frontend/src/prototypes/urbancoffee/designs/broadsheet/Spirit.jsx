@@ -30,7 +30,7 @@ export default function Spirit() {
             <figure>
               <img
                 src={spirit}
-                alt="A glimpse of the Urban spirit — hands with silver nails holding an iced chocolate wrapped in smoke"
+                alt="A glimpse of the Urban spirit - hands with silver nails holding an iced chocolate wrapped in smoke"
                 className="w-full border border-paper/20"
               />
               <figcaption className="mt-2 font-mono text-[10px] tracking-[0.2em] text-paper/50 uppercase">

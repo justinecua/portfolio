@@ -26,13 +26,13 @@ export default function Kitchen() {
             The teriyaki bowl, <em>reviewed</em> by the people who made it.
           </h2>
           <p className="mt-6 text-[15px] leading-relaxed text-ink/80">
-            Our newest bowl is built for the coffee that comes after it — glazed, crunchy, a little sweet, and finished
+            Our newest bowl is built for the coffee that comes after it - glazed, crunchy, a little sweet, and finished
             with enough pickles to keep you coming back. Verdict: biased, but correct.
           </p>
 
           <div className="mt-8 border-2 border-ink p-5">
             <div className="flex items-baseline justify-between border-b border-ink pb-2">
-              <Mono className="font-bold">Fig. 1 — Anatomy</Mono>
+              <Mono className="font-bold">Fig. 1 - Anatomy</Mono>
               <span className="font-mono text-sm font-bold">₱245</span>
             </div>
             <ol className="mt-3 space-y-1.5">
@@ -54,10 +54,10 @@ export default function Kitchen() {
         </Reveal>
 
         <Reveal delay={150} className="grid grid-cols-2 gap-4 lg:col-span-8">
-          <Photo src={hands} alt="Hands presenting the teriyaki chicken bowl" className="col-span-2 aspect-[16/10] sm:col-span-1 sm:row-span-2 sm:aspect-auto" imgClass="object-[50%_70%]" caption="Plate 1 — Served." />
-          <Photo src={top} alt="Teriyaki chicken bowl from above" className="aspect-square" imgClass="object-[50%_60%]" caption="Plate 2 — From above." />
-          <Photo src={closeup} alt="Close-up of glazed chicken with sesame and kewpie" className="aspect-square" imgClass="object-[50%_65%]" caption="Plate 3 — The glaze." />
-          <Photo src={angle} alt="Teriyaki bowl on a wooden table" className="col-span-2 hidden aspect-[21/8] sm:flex" imgClass="object-[50%_70%]" caption="Plate 4 — On the table, briefly." />
+          <Photo src={hands} alt="Hands presenting the teriyaki chicken bowl" className="col-span-2 aspect-[16/10] sm:col-span-1 sm:row-span-2 sm:aspect-auto" imgClass="object-[50%_70%]" caption="Plate 1 - Served." />
+          <Photo src={top} alt="Teriyaki chicken bowl from above" className="aspect-square" imgClass="object-[50%_60%]" caption="Plate 2 - From above." />
+          <Photo src={closeup} alt="Close-up of glazed chicken with sesame and kewpie" className="aspect-square" imgClass="object-[50%_65%]" caption="Plate 3 - The glaze." />
+          <Photo src={angle} alt="Teriyaki bowl on a wooden table" className="col-span-2 hidden aspect-[21/8] sm:flex" imgClass="object-[50%_70%]" caption="Plate 4 - On the table, briefly." />
         </Reveal>
       </div>
     </section>

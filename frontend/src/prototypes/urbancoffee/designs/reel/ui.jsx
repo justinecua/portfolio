@@ -3,7 +3,7 @@ import { Bird } from '../shared'
 export { Bird, Reveal } from '../shared'
 
 /*
- * One typeface (Sora), one scale — every text style comes from here.
+ * One typeface (Sora), one scale - every text style comes from here.
  * Palette is the logo's: black and white, with greys between.
  */
 export const T = {

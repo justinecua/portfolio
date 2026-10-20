@@ -14,7 +14,7 @@ export function LogoMark({ className = 'h-9 w-9' }) {
 /*
  * One typeface (Urbanist), one scale. Every text style in this design comes from here,
  * so weights and sizes stay consistent section to section.
- * Contrast comes from weight — light vs. extra-bold — the way the UrbanCoffee wordmark does it.
+ * Contrast comes from weight - light vs. extra-bold - the way the UrbanCoffee wordmark does it.
  */
 export const T = {
   display: 'text-[clamp(3rem,7.5vw,6.75rem)] leading-[0.95] tracking-[-0.03em]',
@@ -65,7 +65,7 @@ export function Btn({ href, children, primary = false, className = '', ...rest }
   )
 }
 
-// Placeholder opening hours (24h) — mirrors content/branches.js, confirm with the client.
+// Placeholder opening hours (24h) - mirrors content/branches.js, confirm with the client.
 const HOURS = { 0: [7, 24], 1: [7, 23], 2: [7, 23], 3: [7, 23], 4: [7, 23], 5: [7, 24], 6: [7, 24] }
 const fmt = (x) => (x === 24 ? '12 MN' : x > 12 ? `${x - 12} PM` : `${x} AM`)
 

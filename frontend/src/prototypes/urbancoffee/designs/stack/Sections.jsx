@@ -164,7 +164,7 @@ export function Events() {
                 <p className={`${T.small} mt-2 ${live ? 'text-black/65' : 'text-st-muted'}`}>{e.blurb}</p>
                 {live && (
                   <a
-                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} — merchant slot`)}`}
+                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} - merchant slot`)}`}
                     className="mt-5 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-bold text-st-white transition hover:bg-black/80"
                   >
                     Apply for a slot →

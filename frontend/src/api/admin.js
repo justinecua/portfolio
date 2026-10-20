@@ -14,7 +14,7 @@ const setToken = (token) => {
     if (token) localStorage.setItem(TOKEN_KEY, token);
     else localStorage.removeItem(TOKEN_KEY);
   } catch {
-    // storage unavailable — the session just won't persist
+    // storage unavailable - the session just won't persist
   }
 };
 

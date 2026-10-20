@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Label, T } from './ui'
 
 const text =
-  'Urban started with a roaster and a counter. Then came the kitchen, the second floor, the murals, and the late nights. Somewhere along the way it became a home for the people who make things — and the people who just came for an iced latte.'
+  'Urban started with a roaster and a counter. Then came the kitchen, the second floor, the murals, and the late nights. Somewhere along the way it became a home for the people who make things - and the people who just came for an iced latte.'
 
 const words = text.split(' ')
 

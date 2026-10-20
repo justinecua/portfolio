@@ -27,7 +27,7 @@ export default function Bento() {
                 <span className="font-extrabold">there&rsquo;s an Urban.</span>
               </h1>
               <p className={`${T.body} mt-6 max-w-lg text-ch-muted`}>
-                Coffee roasted in-house, the Pigeon Matcha series, and a kitchen that runs late — across two branches in
+                Coffee roasted in-house, the Pigeon Matcha series, and a kitchen that runs late - across two branches in
                 Iligan.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">

@@ -13,7 +13,7 @@ const store = {
       if (value == null) localStorage.removeItem(key);
       else localStorage.setItem(key, value);
     } catch {
-      // storage unavailable — the thread just won't persist
+      // storage unavailable - the thread just won't persist
     }
   },
 };
