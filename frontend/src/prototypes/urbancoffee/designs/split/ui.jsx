@@ -3,7 +3,7 @@ import { Bird } from '../shared'
 export { Bird, Reveal } from '../shared'
 
 /*
- * One typeface (Manrope), one scale — every text style comes from here.
+ * One typeface (Manrope), one scale - every text style comes from here.
  * Palette is strictly the logo's: black, white, and greys between.
  */
 export const T = {

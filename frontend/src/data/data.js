@@ -35,7 +35,7 @@ export const projects = [
     id: "04",
     title: "Lumina UI",
     tag: "Design System",
-    desc: "Open-source component library built for dark UIs — 80+ components, full a11y, Figma tokens.",
+    desc: "Open-source component library built for dark UIs - 80+ components, full a11y, Figma tokens.",
     stack: ["React", "Storybook", "Figma", "CSS"],
     site: "https://lumina-ui.dev",
     youtube: "dQw4w9WgXcQ",
@@ -45,7 +45,7 @@ export const projects = [
     id: "05",
     title: "Lumina UI",
     tag: "Design System",
-    desc: "Open-source component library built for dark UIs — 80+ components, full a11y, Figma tokens.",
+    desc: "Open-source component library built for dark UIs - 80+ components, full a11y, Figma tokens.",
     stack: ["React", "Storybook", "Figma", "CSS"],
     site: "https://lumina-ui.dev",
     youtube: "dQw4w9WgXcQ",
@@ -55,7 +55,7 @@ export const projects = [
     id: "06",
     title: "Lumina UI",
     tag: "Design System",
-    desc: "Open-source component library built for dark UIs — 80+ components, full a11y, Figma tokens.",
+    desc: "Open-source component library built for dark UIs - 80+ components, full a11y, Figma tokens.",
     stack: ["React", "Storybook", "Figma", "CSS"],
     site: "https://lumina-ui.dev",
     youtube: "dQw4w9WgXcQ",
@@ -87,7 +87,7 @@ export const posts = [
       },
       {
         type: "p",
-        text: "I started experimenting with LLM-assisted tooling — not to generate UI from scratch, but to enforce consistency and fill the gaps humans always miss.",
+        text: "I started experimenting with LLM-assisted tooling - not to generate UI from scratch, but to enforce consistency and fill the gaps humans always miss.",
       },
       {
         type: "h2",
@@ -110,7 +110,7 @@ python scripts/audit_tokens.py --report drift.json`,
       },
       {
         type: "p",
-        text: "The bigger win was documentation. Every component now has a structured JSDoc comment with usage examples, accessibility notes, and a list of variants — all generated from the component's props interface and usage patterns extracted from the codebase.",
+        text: "The bigger win was documentation. Every component now has a structured JSDoc comment with usage examples, accessibility notes, and a list of variants - all generated from the component's props interface and usage patterns extracted from the codebase.",
       },
       {
         type: "p",
@@ -122,7 +122,7 @@ python scripts/audit_tokens.py --report drift.json`,
       },
       {
         type: "p",
-        text: "AI works best in a design system as a consistency enforcer, not a creator. Use it to audit, normalize, and document — not to generate components wholesale. The human judgment stays where it matters: architecture decisions and accessibility.",
+        text: "AI works best in a design system as a consistency enforcer, not a creator. Use it to audit, normalize, and document - not to generate components wholesale. The human judgment stays where it matters: architecture decisions and accessibility.",
       },
     ],
   },
@@ -204,7 +204,7 @@ function createSocket(url, onMessage) {
     tag: "Education",
     min: "6 min read",
     excerpt:
-      "What a semester teaching intro CS taught me about how I write code — and how I explain it.",
+      "What a semester teaching intro CS taught me about how I write code - and how I explain it.",
     content: [
       {
         type: "p",
@@ -216,7 +216,7 @@ function createSocket(url, onMessage) {
       },
       {
         type: "p",
-        text: "The hardest part wasn't the content — it was remembering what it felt like to not understand. I kept skipping steps that felt obvious to me. A loop wasn't obvious. A variable wasn't obvious. The fact that the computer executes line by line wasn't obvious. I had to rebuild my mental model of 'beginner.'",
+        text: "The hardest part wasn't the content - it was remembering what it felt like to not understand. I kept skipping steps that felt obvious to me. A loop wasn't obvious. A variable wasn't obvious. The fact that the computer executes line by line wasn't obvious. I had to rebuild my mental model of 'beginner.'",
       },
       {
         type: "h2",
@@ -224,7 +224,7 @@ function createSocket(url, onMessage) {
       },
       {
         type: "p",
-        text: "Variables as labeled boxes. Functions as recipes (ingredients in, dish out). Arrays as numbered shelves in a cabinet. These aren't novel — but I'd forgotten how much work a good analogy does. The students who clicked fastest were the ones who built their own analogies and explained them back to me.",
+        text: "Variables as labeled boxes. Functions as recipes (ingredients in, dish out). Arrays as numbered shelves in a cabinet. These aren't novel - but I'd forgotten how much work a good analogy does. The students who clicked fastest were the ones who built their own analogies and explained them back to me.",
       },
       {
         type: "h2",
@@ -232,7 +232,7 @@ function createSocket(url, onMessage) {
       },
       {
         type: "p",
-        text: "I started naming variables better. Not `x` or `temp` or `data2`. If I couldn't explain what a variable held in one plain English sentence, I renamed it. My functions got shorter. My comments got more honest — less 'what' and more 'why.'",
+        text: "I started naming variables better. Not `x` or `temp` or `data2`. If I couldn't explain what a variable held in one plain English sentence, I renamed it. My functions got shorter. My comments got more honest - less 'what' and more 'why.'",
       },
       {
         type: "p",
@@ -266,7 +266,7 @@ function createSocket(url, onMessage) {
         text: `const canvas = document.querySelector('canvas');
 const gl = canvas.getContext('webgl');
 
-// Vertex shader — where are the points?
+// Vertex shader - where are the points?
 const vert = \`
   attribute vec2 pos;
   void main() {
@@ -274,7 +274,7 @@ const vert = \`
   }
 \`;
 
-// Fragment shader — what color are the pixels?
+// Fragment shader - what color are the pixels?
 const frag = \`
   void main() {
     gl_FragColor = vec4(0.22, 0.82, 0.78, 1.0);
@@ -298,7 +298,7 @@ const frag = \`
       },
       {
         type: "p",
-        text: "Use Three.js for anything involving 3D scenes, cameras, and meshes. Use raw WebGL when you need full control over the shader pipeline — custom post-processing, data visualization, or GPU compute tricks. The threshold is roughly: if you're rendering objects, use Three.js. If you're rendering math, go raw.",
+        text: "Use Three.js for anything involving 3D scenes, cameras, and meshes. Use raw WebGL when you need full control over the shader pipeline - custom post-processing, data visualization, or GPU compute tricks. The threshold is roughly: if you're rendering objects, use Three.js. If you're rendering math, go raw.",
       },
       {
         type: "h2",
@@ -306,7 +306,7 @@ const frag = \`
       },
       {
         type: "p",
-        text: "WebGL Fundamentals (webglfundamentals.org) is the best resource I've found — it's the tutorial I wish existed when I started. Book of Shaders is essential once you're past the basics and want to understand fragment shaders deeply.",
+        text: "WebGL Fundamentals (webglfundamentals.org) is the best resource I've found - it's the tutorial I wish existed when I started. Book of Shaders is essential once you're past the basics and want to understand fragment shaders deeply.",
       },
     ],
   },

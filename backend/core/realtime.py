@@ -16,7 +16,7 @@ def _send(group, event):
         return
     try:
         async_to_sync(layer.group_send)(group, event)
-    except Exception:  # noqa: BLE001 — a Redis outage must not break the API
+    except Exception:  # noqa: BLE001 - a Redis outage must not break the API
         logger.warning("Real-time push to %s failed", group, exc_info=True)
 
 

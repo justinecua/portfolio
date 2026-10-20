@@ -9,7 +9,7 @@ function marketStatus(now = new Date()) {
     const days = Math.ceil((start - now) / 864e5)
     return days === 1 ? 'Opens tomorrow' : `${days} days to go`
   }
-  if (now < end) return 'On now — tonight, 5 PM'
+  if (now < end) return 'On now - tonight, 5 PM'
   return null
 }
 
@@ -48,7 +48,7 @@ export default function Hero() {
           </h2>
           <p className="mt-5 text-[15px] leading-relaxed text-ink/80 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[0.8]">
             Behind the big white letters on the corner is a roaster, a bar, a kitchen, and two floors of tables that fill
-            up after dark. Beans are sourced green and roasted here — so the cup you get tastes the way we meant it to.
+            up after dark. Beans are sourced green and roasted here - so the cup you get tastes the way we meant it to.
           </p>
           <a href="#studio" className="mt-5 inline-block font-mono text-[11px] tracking-[0.15em] uppercase underline decoration-urban decoration-2 underline-offset-4">
             Continued on p. 2 →

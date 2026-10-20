@@ -32,7 +32,7 @@ export function Hero() {
   return (
     <section id="top" ref={ref} className="relative h-[220vh]">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
-        {/* Title above the frame — fades as the photo grows */}
+        {/* Title above the frame - fades as the photo grows */}
         <div className="absolute inset-x-0 top-24 px-5 text-center md:top-28" style={{ opacity: 1 - e * 1.6 }}>
           <Label>Roastery + Kitchen · {contact.city}</Label>
           <h1 className={`${T.display} mt-4`}>Urban Coffee Studio</h1>
@@ -185,7 +185,7 @@ export function Events() {
               <p className={`${T.small} mt-1 text-ln-muted`}>{e.blurb}</p>
               {live && (
                 <a
-                  href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} — merchant slot`)}`}
+                  href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} - merchant slot`)}`}
                   className="mt-4 inline-block border-b border-ln-white pb-0.5 text-sm font-medium transition hover:text-ln-muted"
                 >
                   Apply for a slot →

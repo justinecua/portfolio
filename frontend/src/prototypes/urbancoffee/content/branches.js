@@ -1,4 +1,4 @@
-// Shared by every design prototype. Hours are placeholders — confirm with the client.
+// Shared by every design prototype. Hours are placeholders - confirm with the client.
 export const branches = [
   {
     key: 'tibanga',

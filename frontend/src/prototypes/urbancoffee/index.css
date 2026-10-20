@@ -7,7 +7,7 @@
   --color-urban: #c0161f;
   --color-urban-deep: #9a0f17;
 
-  /* Design B — Reel */
+  /* Design B - Reel */
   --color-rl-bg: #070707;
   --color-rl-panel: #121212;
   --color-rl-white: #f5f5f2;
@@ -15,20 +15,20 @@
   --font-sora: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-urbanist: "Urbanist", ui-sans-serif, system-ui, sans-serif;
 
-  /* Design G — Receipt */
+  /* Design G - Receipt */
   --color-rc-bg: #0a0a0a;
   --color-rc-paper: #f4f2ec;
   --color-rc-white: #ededea;
   --color-rc-muted: #7d7d79;
   --font-plex: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Design H — Lens */
+  /* Design H - Lens */
   --color-ln-bg: #080808;
   --color-ln-white: #f3f3f1;
   --color-ln-muted: #868683;
   --font-geist: "Geist", ui-sans-serif, system-ui, sans-serif;
 
-  /* Design I — Tray */
+  /* Design I - Tray */
   --color-tr-bg: #0c0c0c;
   --color-tr-card: #161616;
   --color-tr-line: #262626;
@@ -36,7 +36,7 @@
   --color-tr-muted: #8a8a87;
   --font-onest: "Onest", ui-sans-serif, system-ui, sans-serif;
 
-  /* Design C — Noir */
+  /* Design C - Noir */
   --color-nr-bg: #0b0b0b;
   --color-nr-surface: #151514;
   --color-nr-raised: #1e1d1b;
@@ -45,7 +45,7 @@
   --color-nr-accent: #d2a679;
   --font-tight: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
 
-  /* Design D — Charcoal */
+  /* Design D - Charcoal */
   --color-ch-bg: #0f0e0d;
   --color-ch-card: #191715;
   --color-ch-raised: #221f1c;
@@ -54,14 +54,14 @@
   --color-ch-matcha: #b8cc7a;
   --color-ch-matcha-deep: #3d4a22;
 
-  /* Design E — Split (strictly the logo's black + white) */
+  /* Design E - Split (strictly the logo's black + white) */
   --color-sp-black: #000000;
   --color-sp-ink: #0d0d0d;
   --color-sp-white: #f7f7f5;
   --color-sp-gray: #8b8b88;
   --font-manrope: "Manrope", ui-sans-serif, system-ui, sans-serif;
 
-  /* Design F — Stack */
+  /* Design F - Stack */
   --color-st-bg: #050505;
   --color-st-card: #111111;
   --color-st-card2: #1a1a1a;
@@ -122,7 +122,7 @@
 }
 
 @layer components {
-  /* Newsprint halftone — goes full colour on hover */
+  /* Newsprint halftone - goes full colour on hover */
   .halftone {
     position: relative;
     overflow: hidden;

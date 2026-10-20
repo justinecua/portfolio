@@ -13,7 +13,7 @@ export const events = [
   {
     key: 'fiesta',
     name: 'Fiesta de Merkado',
-    blurb: 'The Urban Flea Market for Diyandi Festival — unique finds, local crafts, and the festive magic of the season.',
+    blurb: 'The Urban Flea Market for Diyandi Festival - unique finds, local crafts, and the festive magic of the season.',
     dates: 'Sep 18 – 20 · 25 – 27',
     hours: '5 PM – 12 MN',
     start: '2026-09-18',

@@ -54,7 +54,7 @@ function ChatWidget() {
     try {
       setThread(await getChat(token));
     } catch (err) {
-      // the thread was deleted on the server — start fresh
+      // the thread was deleted on the server - start fresh
       if (err.status === 404) reset();
     }
   }, [token, reset]);
@@ -67,7 +67,7 @@ function ChatWidget() {
       "ws/chat/",
       () => token,
       (event) => {
-        // reconnected — fetch the thread to catch anything missed
+        // reconnected - fetch the thread to catch anything missed
         if (event.type === "ready") refresh();
         if (event.type === "message")
           setThread((t) => withMessage(t, event.message));

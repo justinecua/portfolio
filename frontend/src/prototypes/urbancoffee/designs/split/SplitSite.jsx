@@ -100,7 +100,7 @@ export default function SplitSite() {
     <div className="min-h-screen bg-sp-white pt-[60px] font-manrope text-sp-ink antialiased selection:bg-sp-black selection:text-sp-white lg:pt-0">
       <TopBar show={showBar} />
 
-      {/* Split 1 — welcome */}
+      {/* Split 1 - welcome */}
       <section id="welcome" className="lg:grid lg:grid-cols-2">
         <Panel n="00" title="Wherever life takes you, there will always be an Urban." blurb={`Roastery + Kitchen · ${contact.city}`}>
           <PanelLinks />
@@ -108,7 +108,7 @@ export default function SplitSite() {
         <Welcome />
       </section>
 
-      {/* Full width — no split */}
+      {/* Full width - no split */}
       <div id="middle">
         <section id="menu" className="scroll-mt-16">
           <MenuList />
@@ -124,7 +124,7 @@ export default function SplitSite() {
         </section>
       </div>
 
-      {/* Split 2 — visit */}
+      {/* Split 2 - visit */}
       <section id="visit" className="scroll-mt-16 lg:grid lg:grid-cols-2 lg:scroll-mt-0">
         <Panel n="05" title="Come through." blurb="Tibanga and Diocesan, both in Iligan City. Look for the white bird.">
           <a href={`mailto:${contact.email}`} className="text-sm font-bold underline underline-offset-4">

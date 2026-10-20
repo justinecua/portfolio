@@ -24,7 +24,6 @@ import {
   SiReact,
   SiDjango,
   SiFlutter,
-  SiRedis,
   SiLinux,
 } from "react-icons/si";
 import { skills } from "../../data/data";
@@ -91,7 +90,7 @@ const WORK = [
   {
     year: "Live on Google Play",
     kind: "Mobile app · Side project",
-    title: "Worklog — OJT hours tracker",
+    title: "Worklog - OJT hours tracker",
     facts: [
       { big: "1k+", small: "Installs on Google Play" },
       { big: "10k+", small: "OJT hours logged by students" },
@@ -106,7 +105,7 @@ const WORK = [
     linkLabel: "Get it on Google Play",
   },
   {
-    year: "2025 — Now",
+    year: "2025 - Now",
     kind: "Web system · St. Michael's College of Iligan",
     title: "Research archive system",
     facts: [
@@ -120,7 +119,7 @@ const WORK = [
     linkLabel: "View project",
   },
   {
-    year: "2025 — Now",
+    year: "2025 - Now",
     kind: "Mobile app · Global Emergency Medical Registry",
     title: "AED training app",
     facts: [
@@ -135,14 +134,15 @@ const WORK = [
   },
   {
     year: "2025",
-    kind: "Internal tool · Iligan Light and Power Inc.",
-    title: "Internal web app with live chat",
+    kind: "Web system · St. Michael's College of Iligan",
+    title: "Alumni management system",
     facts: [
-      { big: "Real-time", small: "Chat via WebSockets & Django Channels" },
-      { big: "Redis", small: "Used to improve performance" },
+      { big: "Records", small: "Alumni profiles and graduate tracking" },
+      { big: "Events", small: "Announcements and alumni updates" },
     ],
-    stack: "Django · React · PostgreSQL · Redis · MUI",
-    icons: [SiDjango, SiReact, SiRedis, SiPostgresql],
+    stack: "Django · PostgreSQL · Docker",
+    icons: [SiDjango, SiPostgresql, SiDocker],
+    project: "alumni",
     link: "", // add the project URL here
     linkLabel: "View project",
   },
@@ -187,19 +187,19 @@ const EXPERIENCE = [
     role: "ICTC Staff & Faculty",
     org: "St. Michael's College of Iligan",
     meta: "Full-time · Teaches OOP & Databases",
-    date: "Jul 2025 — Now",
+    date: "Jul 2025 - Now",
   },
   {
     role: "Mobile Application Developer",
     org: "Global Emergency Medical Registry",
     meta: "Contract · Remote",
-    date: "Jul 2025 — Now",
+    date: "Jul 2025 - Now",
   },
   {
     role: "Web Developer Intern",
     org: "Iligan Light and Power Inc.",
     meta: "Internship · On-site",
-    date: "Feb — Apr 2025",
+    date: "Feb - Apr 2025",
   },
   {
     role: "BS Computer Science",
@@ -385,7 +385,7 @@ function InfoTab() {
               </div>
 
               <p className="pcard-stack">
-                <span>Stack —</span> {w.stack}
+                <span>Stack -</span> {w.stack}
               </p>
 
               <WorkMedia

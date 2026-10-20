@@ -100,12 +100,12 @@ export function Hero() {
 
       <Reveal className="mt-16 grid grid-cols-3 gap-3">
         {[
-          [storefront, '50% 40%', 'IMG_0001 — Tibanga'],
-          [latte, '50% 30%', 'IMG_0002 — Spanish Latte'],
-          [interior, '50% 50%', 'IMG_0003 — The bar'],
+          [storefront, '50% 40%', 'IMG_0001 - Tibanga'],
+          [latte, '50% 30%', 'IMG_0002 - Spanish Latte'],
+          [interior, '50% 50%', 'IMG_0003 - The bar'],
         ].map(([src, pos, cap]) => (
           <figure key={cap} className="group">
-            <img src={src} alt={cap.split(' — ')[1]} style={{ objectPosition: pos }} className="aspect-[4/3] w-full object-cover grayscale transition duration-500 group-hover:grayscale-0" />
+            <img src={src} alt={cap.split(' - ')[1]} style={{ objectPosition: pos }} className="aspect-[4/3] w-full object-cover grayscale transition duration-500 group-hover:grayscale-0" />
             <figcaption className={`${T.tiny} mt-2 hidden text-rc-muted sm:block`}>{cap}</figcaption>
           </figure>
         ))}
@@ -168,7 +168,7 @@ const posters = { tambayan, fiesta, popart }
 export function Events() {
   return (
     <section id="events" className="mx-auto max-w-7xl px-5 py-20 md:px-10">
-      <SectionHead n="02" title="Now serving: events." note="Markets, music and makers — the space opens up a few times a year." />
+      <SectionHead n="02" title="Now serving: events." note="Markets, music and makers - the space opens up a few times a year." />
       <div className="space-y-4">
         {events.map((e, i) => {
           const s = eventStatus(e)
@@ -192,7 +192,7 @@ export function Events() {
                 <p className={`${T.tiny} font-semibold`}>{live ? s.label : 'Served'}</p>
                 {live && (
                   <a
-                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} — merchant slot`)}`}
+                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`${e.name} - merchant slot`)}`}
                     className="bg-black px-4 py-2 text-xs font-semibold text-rc-paper transition hover:bg-black/80"
                   >
                     [ Apply ]
