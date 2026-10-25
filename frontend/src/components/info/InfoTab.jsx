@@ -24,7 +24,6 @@ import {
   SiReact,
   SiDjango,
   SiFlutter,
-  SiLinux,
 } from "react-icons/si";
 import { skills } from "../../data/data";
 import PhotoLightbox from "./PhotoLightbox";
@@ -36,8 +35,6 @@ import { PROTOTYPES } from "../../prototypes";
 import Clock from "../layout/Clock";
 import profileCutout from "../../assets/profile-cutout.png";
 import profilePhoto from "../../assets/profile.jpeg";
-import worklog from "../../assets/worklog.png";
-import playstore from "../../assets/playstore3.png";
 
 // Drop more photos into src/assets/about/ and they show up in About.
 const ABOUT_PHOTOS = Object.entries(
@@ -85,68 +82,6 @@ const stackGroups = (() => {
   groups[groups.length - 1].items.push(...skills.filter((s) => !known.has(s)));
   return groups.filter((g) => g.items.length);
 })();
-
-const WORK = [
-  {
-    year: "Live on Google Play",
-    kind: "Mobile app · Side project",
-    title: "Worklog - OJT hours tracker",
-    facts: [
-      { big: "1k+", small: "Installs on Google Play" },
-      { big: "10k+", small: "OJT hours logged by students" },
-    ],
-    stack: "React Native · JavaScript · Android",
-    media: "worklog",
-    // matched (case-insensitive) against project titles from the API; the
-    // matching project's thumbnail is shown on the card
-    project: "worklog",
-    href: "https://play.google.com/store/apps/details?id=com.justinecua.worklog",
-    link: "https://play.google.com/store/apps/details?id=com.justinecua.worklog",
-    linkLabel: "Get it on Google Play",
-  },
-  {
-    year: "2025 - Now",
-    kind: "Web system · St. Michael's College of Iligan",
-    title: "Research archive system",
-    facts: [
-      { big: "Django", small: "Backend with PostgreSQL" },
-      { big: "Docker", small: "Deployed on Linux servers" },
-    ],
-    stack: "Django · PostgreSQL · Docker · Linux",
-    icons: [SiDjango, SiPostgresql, SiDocker, SiLinux],
-    project: "research management",
-    link: "", // add the project URL here
-    linkLabel: "View project",
-  },
-  {
-    year: "2025 - Now",
-    kind: "Mobile app · Global Emergency Medical Registry",
-    title: "AED training app",
-    facts: [
-      { big: "iOS + Android", small: "Tested and shipped on both" },
-      { big: "Offline", small: "P2P hotspot sessions between devices" },
-    ],
-    stack: "React Native · Offline-first · Hotspot networking",
-    icons: [SiReact, SiJavascript],
-    project: "simcrit",
-    link: "", // add the project URL here
-    linkLabel: "View project",
-  },
-  {
-    year: "2025",
-    kind: "Web system · St. Michael's College of Iligan",
-    title: "Alumni management system",
-    facts: [
-      { big: "Records", small: "Alumni profiles and graduate tracking" },
-      { big: "Events", small: "Announcements and alumni updates" },
-    ],
-    stack: "Django · PostgreSQL · Docker",
-    icons: [SiDjango, SiPostgresql, SiDocker],
-    project: "alumni",
-    link: "", // add the project URL here
-    linkLabel: "View project",
-  },
-];
 
 const SERVICES = [
   {
@@ -217,83 +152,55 @@ function Section({ className = "", children, ...props }) {
   );
 }
 
-function WorkMedia({ item, project, onPlay }) {
-  // a thumbnail from the matching project in the Projects section
-  if (project?.thumbs.length) {
-    const hasDemo = Boolean(project.youtubeId);
-    const inner = (
-      <>
-        <ProjectThumb
-          sources={project.thumbs}
-          alt={project.title}
-          loading="lazy"
-          fallback={
-            <span className="ocard-placeholder">{project.title.charAt(0)}</span>
-          }
-        />
-        {hasDemo && (
-          <span className="pcard-play" aria-hidden="true">
-            <FiPlay size={18} />
-          </span>
-        )}
-      </>
-    );
-    if (hasDemo) {
-      return (
-        <button
-          type="button"
-          className="pcard-media pcard-media-thumb"
-          onClick={() => onPlay(project)}
-          aria-label={`Watch ${project.title} demo`}
-        >
-          {inner}
-        </button>
-      );
-    }
-    return project.site ? (
-      <a
-        className="pcard-media pcard-media-thumb"
-        href={project.site}
-        target="_blank"
-        rel="noreferrer"
+function WorkMedia({ project, onPlay }) {
+  const hasDemo = Boolean(project.youtubeId);
+  const inner = (
+    <>
+      <ProjectThumb
+        sources={project.thumbs}
+        alt={project.title}
+        loading="lazy"
+        fallback={
+          <span className="ocard-placeholder">{project.title.charAt(0)}</span>
+        }
+      />
+      {hasDemo && (
+        <span className="pcard-play" aria-hidden="true">
+          <FiPlay size={18} />
+        </span>
+      )}
+    </>
+  );
+  if (hasDemo) {
+    return (
+      <button
+        type="button"
+        className="pcard-media"
+        onClick={() => onPlay(project)}
+        aria-label={`Watch ${project.title} demo`}
       >
         {inner}
-      </a>
-    ) : (
-      <div className="pcard-media pcard-media-thumb">{inner}</div>
+      </button>
     );
   }
-
-  if (item.media === "worklog") {
-    return (
-      <a
-        className="pcard-media pcard-media-worklog"
-        href={item.href}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <img src={worklog} alt="Worklog app icon" className="wl-icon" />
-        <div>
-          <p className="wl-name">Worklog</p>
-          <p className="wl-sub">OJT Progress Tracker</p>
-        </div>
-        <img src={playstore} alt="Get it on Google Play" className="wl-store" />
-      </a>
-    );
-  }
-
-  return (
-    <div className="pcard-media pcard-media-icons">
-      {item.icons.map((Icon, i) => (
-        <span key={i} className="pcard-icon">
-          <Icon size={30} />
-        </span>
-      ))}
-    </div>
+  return project.site ? (
+    <a
+      className="pcard-media"
+      href={project.site}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {inner}
+    </a>
+  ) : (
+    <div className="pcard-media">{inner}</div>
   );
 }
 
 const EMAIL = "jcua.dev@gmail.com";
+
+// how many of the newest projects the home page shows
+const HOME_PROJECTS = 4;
 
 // how many prototypes the home page previews; the rest live on /prototypes
 const HOME_PROTOTYPES = 2;
@@ -302,11 +209,9 @@ function InfoTab() {
   const [copied, setCopied] = useState(false);
   const [viewing, setViewing] = useState(null); // index of the open photo
   const [demo, setDemo] = useState(null); // project whose video is open
+  // the API returns projects newest first
   const { projects } = useProjects();
-  const findProject = (keyword) =>
-    keyword
-      ? projects.find((p) => p.title.toLowerCase().includes(keyword))
-      : undefined;
+  const latestProjects = projects.slice(0, HOME_PROJECTS);
 
   const copyEmail = async () => {
     try {
@@ -366,44 +271,23 @@ function InfoTab() {
         </h2>
 
         <div className="pcards">
-          {WORK.map((w, i) => (
-            <article key={w.title} className="pcard" style={{ "--i": i }}>
-              <div className="pcard-top">
-                <span>{w.year}</span>
-                <span>{w.kind}</span>
+          {latestProjects.map((p, i) => (
+            <article key={p.id} className="pcard" style={{ "--i": i }}>
+              <div className="pcard-head">
+                <div>
+                  {p.tag && <p className="pcard-top">{p.tag}</p>}
+                  <h3 className="pcard-title">{p.title}</h3>
+                </div>
+                {p.logo && (
+                  <img
+                    src={p.logo}
+                    alt=""
+                    className="pcard-logo"
+                    loading="lazy"
+                  />
+                )}
               </div>
-
-              <h3 className="pcard-title">{w.title}</h3>
-
-              <div className="pcard-facts">
-                {w.facts.map((f) => (
-                  <div key={f.big}>
-                    <p className="pcard-big">{f.big}</p>
-                    <p className="pcard-small">{f.small}</p>
-                  </div>
-                ))}
-              </div>
-
-              <p className="pcard-stack">
-                <span>Stack -</span> {w.stack}
-              </p>
-
-              <WorkMedia
-                item={w}
-                project={findProject(w.project)}
-                onPlay={setDemo}
-              />
-
-              {w.link && (
-                <a
-                  href={w.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="pcard-link"
-                >
-                  {w.linkLabel} <FiArrowUpRight size={15} />
-                </a>
-              )}
+              <WorkMedia project={p} onPlay={setDemo} />
             </article>
           ))}
         </div>

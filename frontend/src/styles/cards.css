@@ -220,10 +220,10 @@
 
 .bcard {
   display: grid;
-  grid-template-columns: 130px minmax(0, 1fr) auto;
-  gap: 1.5rem;
-  align-items: start;
-  padding: 1.5rem 1.6rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.1rem 1.4rem;
   color: inherit;
   border-bottom: 1px dashed var(--line);
   transition: background 0.2s ease;
@@ -237,51 +237,27 @@
   background: var(--surface);
 }
 
-.bcard-side {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding-top: 0.15rem;
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  font-variant-numeric: tabular-nums;
-}
-
 .bcard-main {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.4rem;
-}
-
-.bcard-tag {
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  color: var(--text);
-  background: var(--surface);
-}
-
-.bcard:hover .bcard-tag {
-  background: var(--card-bg);
+  gap: 0.25rem;
 }
 
 .bcard-title {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.02em;
   color: var(--text);
 }
 
-.bcard-excerpt {
-  font-size: 0.9rem;
-  line-height: 1.6;
+.bcard-meta {
+  font-size: 0.78rem;
   color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
 }
 
 .bcard-arrow {
-  margin-top: 0.2rem;
   color: var(--text-dim);
   transition:
     transform 0.2s ease,
@@ -295,19 +271,6 @@
 
 @media (max-width: 600px) {
   .bcard {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.6rem 1rem;
-    padding: 1.25rem;
-  }
-
-  .bcard-side {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    gap: 0.75rem;
-  }
-
-  .bcard-arrow {
-    grid-column: 2;
-    grid-row: 2;
+    padding: 1rem 1.1rem;
   }
 }

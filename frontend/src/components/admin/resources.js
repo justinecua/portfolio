@@ -59,6 +59,21 @@ export const RESOURCES = {
         placeholder: "https://… (optional)",
         hint: "Or link an image. Without either, the YouTube thumbnail is used.",
       },
+      {
+        name: "logo_file",
+        label: "Logo",
+        type: "file",
+        accept: "image/png,image/jpeg,image/webp,image/gif",
+        current: (f) => f.currentLogo,
+        preview: true,
+        hint: "Square image (max 5 MB). Shown beside the title on the home page.",
+      },
+      {
+        name: "clear_logo_file",
+        label: "Remove uploaded logo",
+        type: "checkbox",
+        showIf: (f) => Boolean(f.currentLogo) && !f.logo_file,
+      },
     ],
     row: (p) => ({
       title: p.title,
@@ -77,6 +92,9 @@ export const RESOURCES = {
       thumbnail_file: null,
       currentThumbnail: p.thumbnail_file || "",
       clear_thumbnail_file: false,
+      logo_file: null,
+      currentLogo: p.logo_file || "",
+      clear_logo_file: false,
     }),
     toPayload: (f) => {
       const data = {
@@ -91,16 +109,18 @@ export const RESOURCES = {
         youtube: f.youtube,
         thumbnail: f.thumbnail,
         clear_thumbnail_file: f.clear_thumbnail_file,
+        clear_logo_file: f.clear_logo_file,
       };
-      if (!f.thumbnail_file) return data;
+      if (!f.thumbnail_file && !f.logo_file) return data;
 
-      // a new photo has to go up as multipart form data
+      // a new image has to go up as multipart form data
       const form = new FormData();
       Object.entries(data).forEach(([k, v]) => {
         if (Array.isArray(v)) v.forEach((item) => form.append(k, item));
         else form.append(k, v);
       });
-      form.append("thumbnail_file", f.thumbnail_file);
+      if (f.thumbnail_file) form.append("thumbnail_file", f.thumbnail_file);
+      if (f.logo_file) form.append("logo_file", f.logo_file);
       return form;
     },
   },

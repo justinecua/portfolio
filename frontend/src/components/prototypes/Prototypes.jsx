@@ -35,7 +35,6 @@ const Prototypes = () => {
         <PageTitle
           light="Prototypes"
           count={PROTOTYPES.length}
-          sub="Website concepts I've built for local businesses. Find yours, try every design, and message me if you like what you see."
         >
           <label className="search">
             <FiSearch size={15} />
@@ -81,15 +80,7 @@ const Prototypes = () => {
           </p>
         )}
 
-        <div className="proto-cta">
-          <div>
-            <h3>Don't see your business?</h3>
-            <p>I can build a concept for it too. Tell me a bit about it.</p>
-          </div>
-          <button type="button" onClick={openChat}>
-            <FiMessageCircle size={15} /> Message me
-          </button>
-        </div>
+      
       </div>
     </div>
   );

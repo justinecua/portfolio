@@ -18,6 +18,10 @@ class ProjectSerializer(serializers.ModelSerializer):
     clear_thumbnail_file = serializers.BooleanField(
         write_only=True, required=False, default=False
     )
+    # set true to remove an uploaded logo
+    clear_logo_file = serializers.BooleanField(
+        write_only=True, required=False, default=False
+    )
     # admin writes the stack as a plain list of names
     stack_names = serializers.ListField(
         child=serializers.CharField(max_length=100),
@@ -39,6 +43,9 @@ class ProjectSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Image must be 5 MB or smaller.")
         return file
 
+    def validate_logo_file(self, file):
+        return self.validate_thumbnail_file(file)
+
     def _set_stack(self, project, names):
         skills = [
             Skill.objects.get_or_create(name=name.strip())[0]
@@ -50,16 +57,17 @@ class ProjectSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         names = validated_data.pop("stack_names", [])
         validated_data.pop("clear_thumbnail_file", None)
+        validated_data.pop("clear_logo_file", None)
         project = super().create(validated_data)
         self._set_stack(project, names)
         return project
 
     def update(self, instance, validated_data):
         names = validated_data.pop("stack_names", None)
-        clear = validated_data.pop("clear_thumbnail_file", False)
-        new_file = validated_data.get("thumbnail_file")
-        if (clear or new_file) and instance.thumbnail_file:
-            instance.thumbnail_file.delete(save=False)
+        for field in ("thumbnail_file", "logo_file"):
+            clear = validated_data.pop(f"clear_{field}", False)
+            if (clear or validated_data.get(field)) and getattr(instance, field):
+                getattr(instance, field).delete(save=False)
         project = super().update(instance, validated_data)
         if names is not None:
             self._set_stack(project, names)

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FiArrowRight, FiArrowUpRight, FiSearch, FiX } from "react-icons/fi";
+import { FiArrowUpRight, FiSearch, FiX } from "react-icons/fi";
 import Spinner from "../Spinner";
 import PageTitle from "../layout/PageTitle";
 import FilterChips from "../layout/FilterChips";
@@ -24,7 +24,6 @@ function BlogList() {
           title: p.title,
           tag: p.tag,
           excerpt: p.excerpt,
-          min: p.read_time,
           date: p.published_date,
         }));
         // newest first
@@ -121,17 +120,12 @@ function BlogList() {
           <Link to={`/blog/${featured.id}`} className="bfeat">
             <div className="bfeat-meta">
               <span className="feat-badge">Latest</span>
-              {featured.tag && <span>{featured.tag}</span>}
               <span>{formatDate(featured.date)}</span>
-              {featured.min && <span>{featured.min} min read</span>}
             </div>
             <h2 className="bfeat-title">{featured.title}</h2>
             {featured.excerpt && (
               <p className="bfeat-excerpt">{featured.excerpt}</p>
             )}
-            <span className="bfeat-cta">
-              Read post <FiArrowRight size={15} />
-            </span>
           </Link>
         )}
 
@@ -156,17 +150,12 @@ function BlogList() {
             <div className="blist">
               {byYear[year].map((post) => (
                 <Link key={post.id} to={`/blog/${post.id}`} className="bcard">
-                  <div className="bcard-side">
-                    <span>{formatDate(post.date)}</span>
-                    {post.min && <span>{post.min} min read</span>}
-                  </div>
-
                   <div className="bcard-main">
-                    {post.tag && <span className="bcard-tag">{post.tag}</span>}
                     <h3 className="bcard-title">{post.title}</h3>
-                    {post.excerpt && (
-                      <p className="bcard-excerpt">{post.excerpt}</p>
-                    )}
+                    <span className="bcard-meta">
+                      {formatDate(post.date)}
+                      {post.tag && ` · ${post.tag}`}
+                    </span>
                   </div>
 
                   <FiArrowUpRight className="bcard-arrow" size={18} />
