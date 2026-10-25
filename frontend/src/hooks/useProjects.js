@@ -36,6 +36,7 @@ function useProjects() {
                   )
                 : []),
             ].filter(Boolean),
+            logo: p.logo_file || null,
             site: p.site,
             stack: p.stack?.map((s) => s.name) || [],
           };
