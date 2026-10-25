@@ -16,6 +16,8 @@ class Project(models.Model):
     thumbnail = models.URLField(blank=True)
     # an uploaded thumbnail wins over the URL and the YouTube thumbnail
     thumbnail_file = models.FileField(upload_to="projects/", blank=True)
+    # small square logo shown beside the title on the home page
+    logo_file = models.FileField(upload_to="projects/logos/", blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
