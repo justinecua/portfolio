@@ -13,6 +13,7 @@ import { RESOURCES } from "./resources";
 import ResourceManager from "./ResourceManager";
 import MessagesManager from "./MessagesManager";
 import ThemeToggle from "../ThemeToggle";
+import useSeo from "../../hooks/useSeo";
 
 // only used while the live connection is down
 const FALLBACK_POLL_MS = 30000;
@@ -23,6 +24,7 @@ const TABS = [
 ];
 
 function AdminPage() {
+  useSeo({ title: "Admin", noindex: true });
   const navigate = useNavigate();
   const { section = "projects" } = useParams();
   const [user, setUser] = useState(null);
