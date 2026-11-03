@@ -4,8 +4,11 @@ import TableStructureSection from "./tableStructureSection";
 import BonusSection from "./bonusSection";
 import ScoringSection from "./scoringSection";
 import SubmissionSection from "./submissionSection";
+import useSeo from "../../../hooks/useSeo";
 
-const Instructions = () => (
+const Instructions = () => {
+  useSeo({ title: "Exam", noindex: true });
+  return (
   <div className="instr-wrap">
     <div className="instr-header">
       <h1 className="instr-title">SEMI FINAL EXAMINATION</h1>
@@ -23,6 +26,7 @@ const Instructions = () => (
     <ScoringSection />
     <SubmissionSection />
   </div>
-);
+  );
+};
 
 export default Instructions;

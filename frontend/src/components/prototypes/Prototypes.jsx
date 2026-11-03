@@ -5,6 +5,7 @@ import FilterChips from "../layout/FilterChips";
 import PrototypeCard from "./PrototypeCard";
 import { chipOptions } from "../../utils/chipOptions";
 import { PROTOTYPES } from "../../prototypes";
+import useSeo from "../../hooks/useSeo";
 
 const openChat = () => window.dispatchEvent(new Event("toggle-chat"));
 
@@ -15,6 +16,11 @@ const searchText = (p) =>
     .toLowerCase();
 
 const Prototypes = () => {
+  useSeo({
+    title: "Prototypes",
+    description: "Website prototypes Justine Cua designed for local businesses.",
+    path: "/prototypes",
+  });
   const [query, setQuery] = useState("");
   const [kind, setKind] = useState(null);
 
