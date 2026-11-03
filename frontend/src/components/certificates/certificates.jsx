@@ -5,8 +5,14 @@ import PageTitle from "../layout/PageTitle";
 import FilterChips from "../layout/FilterChips";
 import { chipOptions } from "../../utils/chipOptions";
 import Spinner from "../Spinner";
+import useSeo from "../../hooks/useSeo";
 
 const Certificates = () => {
+  useSeo({
+    title: "Certificates",
+    description: "Certificates and courses completed by Justine Cua.",
+    path: "/certificates",
+  });
   const [certificates, setCertificates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState(null);

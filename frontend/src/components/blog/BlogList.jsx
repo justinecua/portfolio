@@ -6,10 +6,16 @@ import PageTitle from "../layout/PageTitle";
 import FilterChips from "../layout/FilterChips";
 import { chipOptions } from "../../utils/chipOptions";
 import { formatDate } from "../../utils/formatDate";
+import useSeo from "../../hooks/useSeo";
 
 const yearOf = (iso) => (iso || "").slice(0, 4) || "Undated";
 
 function BlogList() {
+  useSeo({
+    title: "Blog",
+    description: "Notes and tutorials by Justine Cua on mobile and web development.",
+    path: "/blog",
+  });
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");

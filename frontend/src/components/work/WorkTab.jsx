@@ -9,6 +9,7 @@ import ProjectThumb from "./ProjectThumb";
 import Modal from "./Modal";
 import Spinner from "../Spinner";
 import GithubActivity from "./Githubactivity";
+import useSeo from "../../hooks/useSeo";
 
 // The newest (first) project, shown large above the grid.
 function FeaturedProject({ project, onPlay }) {
@@ -77,6 +78,11 @@ function FeaturedProject({ project, onPlay }) {
 }
 
 function WorkTab() {
+  useSeo({
+    title: "Projects",
+    description: "Mobile apps and web systems built by Justine Cua, with the stack and story behind each one.",
+    path: "/projects",
+  });
   const [selected, setSelected] = useState(null);
   const [tag, setTag] = useState(null);
   const { projects, loading } = useProjects();

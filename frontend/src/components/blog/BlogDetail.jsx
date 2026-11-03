@@ -14,6 +14,7 @@ import PostBody from "./PostBody";
 import { formatDate } from "../../utils/formatDate";
 import { sectionId } from "../../utils/sectionId";
 import profile from "../../assets/profile.jpeg";
+import useSeo from "../../hooks/useSeo";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
@@ -106,6 +107,12 @@ function PostPage({ id }) {
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
   const articleRef = useRef(null);
+
+  useSeo({
+    title: post?.title || "Blog",
+    description: post?.excerpt,
+    path: `/blog/${id}`,
+  });
 
   useEffect(() => {
     fetch(`${API}posts/${id}/`)

@@ -35,6 +35,7 @@ import { PROTOTYPES } from "../../prototypes";
 import Clock from "../layout/Clock";
 import profileCutout from "../../assets/profile-cutout.png";
 import profilePhoto from "../../assets/profile.jpeg";
+import useSeo from "../../hooks/useSeo";
 
 // Drop more photos into src/assets/about/ and they show up in About.
 const ABOUT_PHOTOS = Object.entries(
@@ -206,6 +207,7 @@ const HOME_PROJECTS = 4;
 const HOME_PROTOTYPES = 2;
 
 function InfoTab() {
+  useSeo({ path: "/" });
   const [copied, setCopied] = useState(false);
   const [viewing, setViewing] = useState(null); // index of the open photo
   const [demo, setDemo] = useState(null); // project whose video is open
